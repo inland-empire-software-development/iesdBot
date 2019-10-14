@@ -14,7 +14,7 @@ const displayTeam = async (web, db) => {
     }
   }
 
-  const teams = await db.find({ dateOfEvent: hackDayDate });
+  let teams = await db.find({ dateOfEvent: hackDayDate });
   
   const message = {
     channel: 'iesd-bot',

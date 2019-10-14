@@ -1,9 +1,12 @@
 const TeamInfo = (teamName, teamMembers, teamSize) => {
+  console.log(teamMembers);
+  const teamMemberMentions = teamMembers.map(member => ` <@${member}>`);
+
   return {
     type: "section",
     text: {
       type: "mrkdwn",
-      text: `*${teamName} (${teamSize})*\n${teamMembers}`
+      text: `*${teamName} (${teamSize})*\n${teamMemberMentions}\n`
     },
     accessory: {
       type: "button",
