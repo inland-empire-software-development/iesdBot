@@ -7,19 +7,19 @@ const teamSchema = new Schema({
     unique: true
   },
   // Store team member's Slack ID
-  members: [
+  teamMembers: [
     {
       type: 'String',
       unique: true
     }
   ],
   // Whether the team is open, closed or invite-only
-  status: {
+  teamSetting: {
     type: 'String'
   },
   // Date of event that team will be on
   dateOfEvent: {
-    type: date,
+    type: Date,
     unique: true
   }
 });
