@@ -10,9 +10,3 @@ module.exports = (slackEvents, web) => {
   });
 
 }
-
-// listeners
-
-//controllers
-// - events
-// - actions

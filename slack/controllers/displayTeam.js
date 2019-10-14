@@ -1,4 +1,3 @@
-// import Team from '../views/Team';
 const Team = require('../views/Team')();
 
 const displayTeam = (web) => {
