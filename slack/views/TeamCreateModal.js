@@ -1,18 +1,5 @@
-const ModalTeamNameInput = require('./ModalInput')(
-  "plain_text_input", // Input Type
-  "team_name", // action id
-  "What would you like to name your team?", // Placeholder Text
-  "Team Name" // Label Text
-);
-
-const ModalMembersInput = require('./ModalInput')(
-  "multi_users_select",
-  "members",
-  "Who else will be working with you?",
-  "Members"
-);
-
-const TeamModalSettingSelect = require('./TeamModalSettingSelect')();
+const ModalInput = require('./ModalInput');
+const TeamModalSettingSelect = require('./TeamModalSettingSelect');
 
 const TeamCreateModal = () => {
   return {
@@ -33,9 +20,19 @@ const TeamCreateModal = () => {
       emoji: true
     },
     blocks: [
-      ModalTeamNameInput,
-      ModalMembersInput,
-      TeamModalSettingSelect
+      ModalInput(  
+        "plain_text_input", // Input Type
+        "team_name", // action id
+        "What would you like to name your team?", // Placeholder Text
+        "Team Name" // Label Text
+      ),
+      ModalInput(
+        "multi_users_select",
+        "members",
+        "Who else will be working with you?",
+        "Members"
+      ),
+      TeamModalSettingSelect()
     ]
   }
 }

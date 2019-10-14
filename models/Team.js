@@ -20,7 +20,6 @@ const teamSchema = new Schema({
   // Date of event that team will be on
   dateOfEvent: {
     type: Date,
-    unique: true
   }
 });
 

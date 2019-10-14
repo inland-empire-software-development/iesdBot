@@ -1,9 +1,9 @@
-const TeamInfo = () => {
+const TeamInfo = (teamName, teamMembers, teamSize) => {
   return {
     type: "section",
     text: {
       type: "mrkdwn",
-      text: "*Leet Coders (2)*\nJosh, Bill"
+      text: `*${teamName} (${teamSize})*\n${teamMembers}`
     },
     accessory: {
       type: "button",
