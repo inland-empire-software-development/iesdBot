@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+/**
+ * Using the Schema constructor, create a new teamSchema object.
+ * This outlines how the document will be stored in Mongo.
+ */
+
 const teamSchema = new Schema({
   teamName: {
     type: 'String',
