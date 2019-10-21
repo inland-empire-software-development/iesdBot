@@ -1,4 +1,4 @@
-const { displayTeam } = require('../controllers/displayTeam');
+const displayTeam = require('../controllers/displayTeam');
 const Team = require('../../models/Team');
 
 module.exports = (slackEvents, web) => {

@@ -7,7 +7,7 @@ const key = require('./config/keys');
 
 // Loggers
 const morgan = require('morgan');
-var winston = require('./config/winston');
+const winston = require('./config/winston');
 
 // Slack SDK
 const { WebClient } = require('@slack/web-api');
@@ -39,7 +39,8 @@ app.listen(process.env.PORT, () => {
   mongoose.connect(key.mongoURI, {
     useCreateIndex: true,
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
   }, err => {
     if(err) console.log(err);
   })

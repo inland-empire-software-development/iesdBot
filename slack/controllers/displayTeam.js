@@ -24,6 +24,4 @@ const displayTeam = async (web, db) => {
   return web.chat.postMessage(message)
 }
 
-module.exports = {
-  displayTeam
-}
+module.exports = displayTeam;

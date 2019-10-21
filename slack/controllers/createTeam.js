@@ -42,6 +42,4 @@ const createTeam = (payload, db) => {
 
 }
 
-module.exports = {
-  createTeam
-}
+module.exports = createTeam;
