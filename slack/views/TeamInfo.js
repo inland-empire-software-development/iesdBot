@@ -12,8 +12,10 @@ const TeamInfo = (teamName, teamMembers, teamSize) => {
       type: "button",
       text: {
         type: "plain_text",
-        text: "Choose"
-      }
+        text: "Choose",
+      },
+      value: teamName,
+      action_id: "team_select"
     }
   }
 };

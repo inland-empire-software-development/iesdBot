@@ -8,8 +8,10 @@ let TeamInfo = require('./TeamInfo');
 const Team = (teams) => {
   const ListOfTeams = teams.map(team => {
     const { teamName, teamMembers } = team;
+
     return TeamInfo(teamName, teamMembers, teamMembers.length);
   });
+
   return [
     TeamGreeting(),
     Divider(),

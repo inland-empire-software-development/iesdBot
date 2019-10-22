@@ -17,7 +17,7 @@ const TeamCreateModal = () => {
     submit: {
       type: "plain_text",
       text: "Create",
-      emoji: true
+      emoji: true,
     },
     blocks: [
       ModalInput(  

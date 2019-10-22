@@ -10,6 +10,4 @@ const displayTeamCreate = (web, trigger_id) => {
   return web.views.open(modal);
 }
 
-module.exports = {
-  displayTeamCreate
-}
+module.exports = displayTeamCreate;
