@@ -14,7 +14,12 @@ const displayTeam = async (web, db) => {
     }
   }
 
-  let teams = await db.find({ dateOfEvent: hackDayDate });
+  /**
+   * ADD THIS LINE BACK IN ONCE HACK DAY IS BACK
+   * COMMENTED OUT FOR TESTING PURPOSES
+   */
+  // let teams = await db.find({ dateOfEvent: hackDayDate });
+  let teams = await db.find();
   
   const message = {
     channel: 'iesd-bot',

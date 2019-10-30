@@ -23,16 +23,29 @@ const createTeam = (payload, db) => {
     const events = response.data;
     
     for(const event of events){
-      if(event.name.includes('Hack Day')){
-        hackDayDate = event.local_date;
+      /**
+       * ADD THIS LINE BACK IN ONCE HACK DAY RETURNS
+       * AND MAYBE ADD AN ELSE TO HANDLE WHEN PEOPLE 
+       * TRY TO CREATE TEAMS WITHOUT A FUTURE HACK DAY
+       */
+      // if(event.name.includes('Hack Day')){
+      //   hackDayDate = event.local_date;
 
-        return db.create({
-          teamName,
-          teamMembers,
-          teamSetting,
-          dateOfEvent: hackDayDate
-        });
-      }
+      //   return db.create({
+      //     teamName,
+      //     teamMembers,
+      //     teamSetting,
+      //     dateOfEvent: hackDayDate
+      //   });
+      // }
+      hackDayDate = new Date();
+
+      return db.create({
+        teamName,
+        teamMembers,
+        teamSetting,
+        dateOfEvent: hackDayDate
+      });
     }
   })
   .catch(err => {
