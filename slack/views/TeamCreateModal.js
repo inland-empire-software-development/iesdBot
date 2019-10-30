@@ -19,6 +19,7 @@ const TeamCreateModal = () => {
       text: "Create",
       emoji: true,
     },
+    callback_id: "submit_team",
     blocks: [
       ModalInput(  
         "plain_text_input", // Input Type
