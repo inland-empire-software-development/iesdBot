@@ -18,7 +18,7 @@ const createTeam = (payload, db) => {
     }
   }
 
-  return axios.get('https://api.meetup.com/iesd-meetup/events?&sign=true&photo-host=public')
+  axios.get('https://api.meetup.com/iesd-meetup/events?&sign=true&photo-host=public')
   .then(response => {
     const events = response.data;
     
