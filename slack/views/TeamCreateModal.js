@@ -20,14 +20,6 @@ const TeamCreateModal = () => {
       emoji: true,
     },
     callback_id: "submit_team",
-    response_action: "update",
-    view: {
-      type: "modal",
-      title: {
-        type: "plain_text",
-        text: "Updated view"
-      }
-    },
     blocks: [
       ModalInput(  
         "plain_text_input", // Input Type
