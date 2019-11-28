@@ -13,6 +13,7 @@ const createTeam = (payload, db) => {
       teamName = values[value].team_name.value;
     } else if(values[value].hasOwnProperty('members')){
       teamMembers = values[value].members.selected_users;
+      teamMembers.unshift(payload.user.id);
     } else {
       teamSetting = values[value].group_settings.selected_option.value;
     }
