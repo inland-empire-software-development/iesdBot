@@ -1,7 +1,7 @@
 const axios = require('axios');
 let Team = require('../views/Team');
 
-const displayTeam = async (web, db) => {
+const updateTeam = async (web, db) => {
 
   let hackDayDate;
 
@@ -26,7 +26,7 @@ const displayTeam = async (web, db) => {
     blocks: Team(teams)
   }
 
-  return web.chat.postMessage(message)
+  return web.chat.update(message)
 }
 
-module.exports = displayTeam;
+module.exports = updateTeam;
