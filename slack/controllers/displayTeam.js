@@ -26,7 +26,7 @@ const displayTeam = async (web, db) => {
     blocks: Team(teams)
   }
 
-  return web.chat.postMessage(message)
+  return web.chat.postEphemeral(message);
 }
 
 module.exports = displayTeam;
