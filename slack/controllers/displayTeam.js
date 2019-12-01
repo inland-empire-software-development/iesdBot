@@ -1,7 +1,7 @@
 const axios = require('axios');
 let Team = require('../views/Team');
 
-const displayTeam = async (web, db) => {
+const displayTeam = async (web, db, event) => {
 
   let hackDayDate;
 
@@ -22,11 +22,12 @@ const displayTeam = async (web, db) => {
   let teams = await db.find();
   
   const message = {
-    channel: 'iesd-bot',
+    channel: event.user,
+    as_user: true,
     blocks: Team(teams)
   }
 
-  return web.chat.postEphemeral(message);
+  return web.chat.postMessage(message);
 }
 
 module.exports = displayTeam;
