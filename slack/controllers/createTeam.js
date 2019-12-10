@@ -4,7 +4,7 @@ const createTeam = (payload, db) => {
   const values = payload.view.state.values;
 
   let teamName;
-  // const teamOwner = payload.user.id;
+  const teamOwner = payload.user.id;
   let teamMembers;
   let teamSetting;
   let hackDayDate;
@@ -44,7 +44,7 @@ const createTeam = (payload, db) => {
 
       return db.create({
         teamName,
-        // teamOwner,
+        teamOwner,
         teamMembers,
         teamSetting,
         dateOfEvent: hackDayDate
