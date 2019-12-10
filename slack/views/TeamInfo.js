@@ -1,5 +1,4 @@
 const TeamInfo = (teamName, teamMembers, teamSize) => {
-  console.log(teamMembers);
   const teamMemberMentions = teamMembers.map(member => ` <@${member}>`);
 
   return {

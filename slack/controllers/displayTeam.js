@@ -22,12 +22,12 @@ const displayTeam = async (web, db, event) => {
   let teams = await db.find();
   
   const message = {
-    channel: event.user,
-    as_user: true,
+    channel: 'iesd-bot',
+    user: event.user,
     blocks: Team(teams)
   }
 
-  return web.chat.postMessage(message);
+  return web.chat.postEphemeral(message);
 }
 
 module.exports = displayTeam;
