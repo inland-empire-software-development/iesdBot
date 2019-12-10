@@ -1,11 +1,11 @@
 const ModalInput = require('./ModalInput');
 const TeamModalSettingSelect = require('./TeamModalSettingSelect');
 
-const TeamCreateModal = () => {
+const TeamManagerModal = () => {
   return {
     title: {
       type: "plain_text",
-      text: "Create a team",
+      text: "Edit Team Info",
       emoji: true
     },
     type: "modal",
@@ -16,10 +16,10 @@ const TeamCreateModal = () => {
     },
     submit: {
       type: "plain_text",
-      text: "Create",
+      text: "Submit",
       emoji: true,
     },
-    callback_id: "submit_team",
+    callback_id: "edit_team_info",
     blocks: [
       ModalInput(  
         "plain_text_input", // Input Type
@@ -38,4 +38,4 @@ const TeamCreateModal = () => {
   }
 }
 
-module.exports = TeamCreateModal;
+module.exports = TeamManagerModal;

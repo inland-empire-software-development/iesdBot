@@ -1,7 +1,7 @@
 const axios = require('axios');
 let Team = require('../views/Team');
 
-const updateTeam = async (web, db) => {
+const generateTeamBlock = async (db, userId) => {
 
   let hackDayDate;
 
@@ -19,14 +19,11 @@ const updateTeam = async (web, db) => {
    * COMMENTED OUT FOR TESTING PURPOSES
    */
   // let teams = await db.find({ dateOfEvent: hackDayDate });
-  let teams = await db.find();
-  
-  const message = {
-    channel: 'iesd-bot',
-    blocks: Team(teams)
-  }
+  const teams = await db.find();
+  const userTeam = await db.find({ teamMembers: userId });
 
-  return web.chat.update(message)
+  const teamBlock = await Team(teams, userTeam[0]);
+  return teamBlock;
 }
 
-module.exports = updateTeam;
+module.exports = generateTeamBlock;
