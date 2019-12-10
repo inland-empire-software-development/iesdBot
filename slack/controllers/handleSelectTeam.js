@@ -5,7 +5,7 @@ const axios = require('axios');
 const handleSelectTeam = async (web, payload, Team) => {
   await addUserToTeam(payload, Team);
 
-  const teamBlock = await generateTeamView(Team);
+  const teamBlock = await generateTeamView(Team, payload.user.id);
 
   axios.post(payload.response_url, {
     replace_original: 'true',

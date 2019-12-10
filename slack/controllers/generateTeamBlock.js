@@ -1,7 +1,7 @@
 const axios = require('axios');
 let Team = require('../views/Team');
 
-const generateTeamBlock = async (db) => {
+const generateTeamBlock = async (db, userId) => {
 
   let hackDayDate;
 
@@ -19,9 +19,10 @@ const generateTeamBlock = async (db) => {
    * COMMENTED OUT FOR TESTING PURPOSES
    */
   // let teams = await db.find({ dateOfEvent: hackDayDate });
-  let teams = await db.find();
+  const teams = await db.find();
+  const userTeam = await db.find({ teamMembers: userId });
 
-  const teamBlock = await Team(teams);
+  const teamBlock = await Team(teams, userTeam[0]);
   return teamBlock;
 }
 

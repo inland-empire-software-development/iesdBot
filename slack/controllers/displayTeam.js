@@ -19,12 +19,14 @@ const displayTeam = async (web, db, event) => {
    * COMMENTED OUT FOR TESTING PURPOSES
    */
   // let teams = await db.find({ dateOfEvent: hackDayDate });
-  let teams = await db.find();
+  const teams = await db.find();
+
+  const userTeam = await db.find({ teamMembers: event.user });
   
   const message = {
     channel: 'iesd-bot',
     user: event.user,
-    blocks: Team(teams)
+    blocks: Team(teams, userTeam[0])
   }
 
   return web.chat.postEphemeral(message);
