@@ -11,6 +11,10 @@ const teamSchema = new Schema({
     type: 'String',
     unique: true
   },
+  // teamOwner: {
+  //   type: 'String',
+  //   unique: true
+  // },
   // Store team member's Slack ID
   teamMembers: [
     {

@@ -1,9 +1,9 @@
-const addUserToTeam = require('./addUserToTeam');
+const removeUserFromTeam = require('./removeUserFromTeam');
 const generateTeamBlock = require('./generateTeamBlock');
 const axios = require('axios');
 
-const handleSelectTeam = async (web, payload, Team) => {
-  await addUserToTeam(payload, Team);
+const handleLeaveTeam = async (payload, Team) => {
+  await removeUserFromTeam(payload, Team);
 
   const teamBlock = await generateTeamBlock(Team, payload.user.id);
 
@@ -13,4 +13,4 @@ const handleSelectTeam = async (web, payload, Team) => {
   })
 }
 
-module.exports = handleSelectTeam;
+module.exports = handleLeaveTeam;

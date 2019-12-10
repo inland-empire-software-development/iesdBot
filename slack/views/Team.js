@@ -21,7 +21,7 @@ const generateListOfTeamsWithUserTeam = (teams, userTeam) => {
   const ListOfTeams = teams.map(team => {
     const { teamName, teamMembers } = team;
     if(teamName === userTeam.teamName){
-      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Leave", "team_select");
+      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Leave", "leave_team");
     }
 
     return TeamInfo(teamName, teamMembers, teamMembers.length);
