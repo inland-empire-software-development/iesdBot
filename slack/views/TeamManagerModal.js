@@ -21,19 +21,76 @@ const TeamManagerModal = () => {
     },
     callback_id: "edit_team_info",
     blocks: [
-      ModalInput(  
-        "plain_text_input", // Input Type
-        "team_name", // action id
-        "What would you like to name your team?", // Placeholder Text
-        "Team Name" // Label Text
-      ),
-      ModalInput(
-        "multi_users_select",
-        "members",
-        "Who else will be working with you?",
-        "Members"
-      ),
-      TeamModalSettingSelect()
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          // text: `*${teamName} (${teamSize})*\n${teamMemberMentions}\n`
+          text: '*Team Name:*'
+        },
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: 'Test name'
+        },
+        accessory: {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: 'edit',
+          },
+          value: 'test',
+          action_id: 'test'
+        }
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: '*Members:*'
+        }
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: 'Johnathan'
+        },
+        accessory: {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: 'kick',
+          },
+          value: 'test',
+          action_id: 'test'
+        }
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: '*Group Setting*'
+        },
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: 'Open'
+        },
+        accessory: {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: 'change',
+          },
+          value: 'test',
+          action_id: 'test'
+        }
+      },
     ]
   }
 }

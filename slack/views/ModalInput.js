@@ -7,7 +7,7 @@ const ModalInput = (inputType, actionId, placeHolderText, labelText) => {
       placeholder: {
         type: "plain_text",
         text: placeHolderText
-      }
+      },
     },
     label: {
       type: "plain_text",
