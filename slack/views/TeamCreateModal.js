@@ -1,5 +1,6 @@
-const ModalInput = require('./ModalInput');
 const TeamModalSettingSelect = require('./TeamModalSettingSelect');
+const ModalMultiUsersSelect = require('./ModalMultiUsersSelect');
+const ModalPlainTextInput = require('./ModalPlainTextInput');
 
 const TeamCreateModal = () => {
   return {
@@ -21,17 +22,17 @@ const TeamCreateModal = () => {
     },
     callback_id: "submit_team",
     blocks: [
-      ModalInput(  
-        "plain_text_input", // Input Type
-        "team_name", // action id
+      ModalPlainTextInput(  
+        "team_name", // Action ID
+        "", // Initial value
         "What would you like to name your team?", // Placeholder Text
         "Team Name" // Label Text
       ),
-      ModalInput(
-        "multi_users_select",
-        "members",
-        "Who else will be working with you?",
-        "Members"
+      ModalMultiUsersSelect(
+        "members", // Action ID
+        [], // Initial Users
+        "Who else will be working with you?", // Placeholder Text
+        "Members" // Label Text
       ),
       TeamModalSettingSelect()
     ]

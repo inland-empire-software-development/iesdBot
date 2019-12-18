@@ -1,9 +1,10 @@
-const ModalInput = (inputType, actionId, placeHolderText, labelText) => {
+const ModalMultiUsersSelect = (actionId, initialUsers, placeHolderText, labelText) => {
   return {
     type: "input",
     element: {
-      type: inputType,
+      type: "multi_users_select",
       action_id: actionId,
+      initial_users: initialUsers,
       placeholder: {
         type: "plain_text",
         text: placeHolderText
@@ -16,4 +17,4 @@ const ModalInput = (inputType, actionId, placeHolderText, labelText) => {
   }
 }
 
-module.exports = ModalInput;
+module.exports = ModalMultiUsersSelect;
