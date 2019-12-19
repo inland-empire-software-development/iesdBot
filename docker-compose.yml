@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+
+  # Backend API
+  iesdbot-api:
+    container_name: iesdbot-api
+    build: ./
+    command: npm run dev
+    working_dir: /usr/src/iesdbot-api
+    environment:
+      REDIS_URI: redis://redis:6379
+    links:
+      - redis
+    ports:
+      - "5050:5050"
+    volumes:
+      - ./:/usr/src/iesdbot-api
+
+  #To connect on local terminal
+  #mongodb://192.168.99.100:27017
+
+  #To connect in server.js
+  #mongodb://mongo:27017
+
+  mongo:
+    container_name: mongo
+    build: ./mongo
+    ports:
+      - "27017:27017"
+
+  redis:
+    container_name: redis
+    build: ./redis
+    ports:
+      - "6379:6379"
