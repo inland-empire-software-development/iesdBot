@@ -34,7 +34,7 @@ const TeamCreateModal = () => {
         "Who else will be working with you?", // Placeholder Text
         "Members" // Label Text
       ),
-      TeamModalSettingSelect()
+      TeamModalSettingSelect("open")
     ]
   }
 }

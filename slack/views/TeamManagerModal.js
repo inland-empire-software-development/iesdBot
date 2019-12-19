@@ -1,5 +1,7 @@
-const ModalInput = require('./ModalInput');
 const TeamModalSettingSelect = require('./TeamModalSettingSelect');
+const ModalPlainTextInput = require('./ModalPlainTextInput');
+const ModalMultiUsersSelect = require('./ModalMultiUsersSelect');
+const Divider = require('./Divider');
 
 const TeamManagerModal = () => {
   return {
@@ -21,85 +23,20 @@ const TeamManagerModal = () => {
     },
     callback_id: "edit_team_info",
     blocks: [
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          // text: `*${teamName} (${teamSize})*\n${teamMemberMentions}\n`
-          text: '*Team Name:*'
-        },
-      },
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: 'Test name'
-        },
-        accessory: {
-          type: "button",
-          text: {
-            type: "plain_text",
-            text: 'edit',
-          },
-          value: 'test',
-          action_id: 'test'
-        },
-      },
-      {
-        type: "input",
-        element: {
-          type: "multi_users_select",
-          action_id: "memberasda",
-          initial_users: ["UFL9S0KSP"],
-          placeholder: {
-            type: "plain_text",
-            text: "Name of team members"
-          },
-        },
-        label: {
-          type: "plain_text",
-          text: "Members"
-        }
-      },
-      // {
-      //   type: "section",
-      //   text: {
-      //     type: "mrkdwn",
-      //     text: 'Johnathan'
-      //   },
-      //   accessory: {
-      //     type: "button",
-      //     text: {
-      //       type: "plain_text",
-      //       text: 'kick',
-      //     },
-      //     value: 'test',
-      //     action_id: 'test'
-      //   }
-      // },
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: '*Group Setting*'
-        },
-      },
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: 'Open'
-        },
-        accessory: {
-          type: "button",
-          text: {
-            type: "plain_text",
-            text: 'change',
-          },
-          value: 'test',
-          action_id: 'test'
-        }
-      },
+      ModalPlainTextInput(
+        "team_name", // Action ID
+        "Test Name", // Initial value
+        "What would you like to name your team?", // Placeholder Text
+        "Team Name" // Label Text
+      ),
+      ModalMultiUsersSelect(
+        "members", // Action ID
+        ["UFL9S0KSP"], // Initial Users
+        "Who else will be working with you?", // Placeholder Text
+        "Members" // Label Text
+      ),
+      TeamModalSettingSelect("open"),
+      Divider(),
       {
         type: "actions",
         elements: [
