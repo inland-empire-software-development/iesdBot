@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.6'
 
 services:
 
@@ -10,8 +10,11 @@ services:
     working_dir: /usr/src/iesdbot-api
     environment:
       REDIS_URI: redis://redis:6379
+      MONGO_URI: mongodb://mongo:27017
+      DOCKER: DOCKER
     links:
-      - redis
+      - iesdbot-redis
+      - iesdbot-mongo
     ports:
       - "5050:5050"
     volumes:
@@ -23,14 +26,14 @@ services:
   #To connect in server.js
   #mongodb://mongo:27017
 
-  mongo:
-    container_name: mongo
+  iesdbot-mongo:
+    container_name: iesdbot-mongo
     build: ./mongo
     ports:
       - "27017:27017"
 
-  redis:
-    container_name: redis
+  iesdbot-redis:
+    container_name: iesdbot-redis
     build: ./redis
     ports:
       - "6379:6379"

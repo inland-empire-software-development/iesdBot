@@ -8,8 +8,9 @@
     "dev": "nodemon server.js",
     "test": "jest --watch",
     "docker-build": "docker-compose down & docker-compose up --build",
-    "docker-start": "docker-compose down & docker-compose up",
-    "docker-stop": "docker-compose down"
+    "docker-start": "docker-compose stop & docker-compose up",
+    "docker-stop": "docker-compose stop",
+    "docker-down": "docker-compose down"
   },
   "dependencies": {
     "@slack/events-api": "^2.3.0",
