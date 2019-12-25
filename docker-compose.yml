@@ -9,8 +9,8 @@ services:
     command: npm run dev
     working_dir: /usr/src/iesdbot-api
     environment:
-      REDIS_URI: redis://redis:6379
-      MONGO_URI: mongodb://mongo:27017
+      REDIS_URI: redis://iesdbot-redis:6379
+      MONGO_URI: mongodb://iesdbot-mongo:27017
       DOCKER: DOCKER
     links:
       - iesdbot-redis
@@ -24,7 +24,7 @@ services:
   #mongodb://192.168.99.100:27017
 
   #To connect in server.js
-  #mongodb://mongo:27017
+  #mongodb://iesdbot-mongo:27017
 
   iesdbot-mongo:
     container_name: iesdbot-mongo

@@ -3,7 +3,7 @@ console.log(process.env.DOCKER === 'DOCKER');
 
 if(process.env.DOCKER === 'DOCKER'){
   module.exports = {
-    mongoURI: 'mongodb://mongo:27017'
+    mongoURI: 'mongodb://iesdbot-mongo/IESDSlackTest'
   }
 } else {
   module.exports = {
