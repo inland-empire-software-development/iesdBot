@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js",
+    "dev": "nodemon -L server.js",
     "test": "jest --watch",
     "docker-build": "docker-compose down & docker-compose up --build",
     "docker-start": "docker-compose stop & docker-compose up",
