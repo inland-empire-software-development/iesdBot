@@ -10,7 +10,6 @@ services:
     working_dir: /usr/src/iesdbot-api
     environment:
       REDIS_URI: redis://iesdbot-redis:6379
-      MONGO_URI: mongodb://iesdbot-mongo:27017
       DOCKER: DOCKER
     links:
       - iesdbot-redis
@@ -29,9 +28,11 @@ services:
   iesdbot-mongo:
     container_name: iesdbot-mongo
     build: ./mongo
+    environment:
+      MONGO_INITDB_DATABASE: IESDSlackTest
     ports:
       - "27017:27017"
-
+  
   iesdbot-redis:
     container_name: iesdbot-redis
     build: ./redis
