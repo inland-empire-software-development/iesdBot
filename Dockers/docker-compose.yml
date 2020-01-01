@@ -5,7 +5,9 @@ services:
   # Backend API
   iesdbot-api:
     container_name: iesdbot-api
-    build: ./
+    build:
+      context: ../
+      dockerfile: ./Dockers/api/Dockerfile
     command: npm run dev
     working_dir: /usr/src/iesdbot-api
     environment:
@@ -17,7 +19,7 @@ services:
     ports:
       - "5050:5050"
     volumes:
-      - ./:/usr/src/iesdbot-api
+      - ../:/usr/src/iesdbot-api
 
   #To connect on local terminal
   #mongodb://192.168.99.100:27017
@@ -32,6 +34,8 @@ services:
       MONGO_INITDB_DATABASE: IESDSlackTest
     ports:
       - "27017:27017"
+    volumes:
+      - ./mongo/data:/data/db
   
   iesdbot-redis:
     container_name: iesdbot-redis

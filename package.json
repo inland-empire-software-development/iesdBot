@@ -7,10 +7,10 @@
     "start": "node server.js",
     "dev": "nodemon -L server.js",
     "test": "jest --watch",
-    "docker-build": "docker-compose down & docker-compose up --build",
-    "docker-start": "docker-compose stop & docker-compose up",
-    "docker-stop": "docker-compose stop",
-    "docker-down": "docker-compose down"
+    "docker-build": "cd Dockers & docker-compose down & docker-compose up --build",
+    "docker-start": "cd Dockers & docker-compose stop & docker-compose up",
+    "docker-stop": "cd Dockers & docker-compose stop",
+    "docker-down": "cd Dockers & docker-compose down"
   },
   "dependencies": {
     "@slack/events-api": "^2.3.0",
