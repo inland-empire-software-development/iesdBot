@@ -34,8 +34,6 @@ services:
       MONGO_INITDB_DATABASE: IESDSlackTest
     ports:
       - "27017:27017"
-    volumes:
-      - ./mongo/data:/data/db
   
   iesdbot-redis:
     container_name: iesdbot-redis
