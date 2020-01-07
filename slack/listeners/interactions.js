@@ -12,10 +12,7 @@ module.exports = (slackInteractions, web) => {
   slackInteractions.action({ actionId: 'team_select' }, (payload, response) => handleSelectTeam(web, payload, Team));
 
   // Handles removing the current user when they click "leave" from the team
-  // slackInteractions.action({ actionId: 'leave_team' }, (payload, response) => handleLeaveTeam(payload, Team));
-  slackInteractions.action({ actionId: 'leave_team' }, (payload, response) => {
-    console.log(payload);
-  })
+  slackInteractions.action({ actionId: 'leave_team' }, (payload, response) => handleLeaveTeam(payload, Team));
 
   // Handles opening the modal for managing the user's team
   slackInteractions.action({ actionId: 'manage_team' }, (payload, response) => displayTeamManager(web, payload.trigger_id));

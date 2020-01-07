@@ -12,6 +12,8 @@ services:
     working_dir: /usr/src/iesdbot-api
     environment:
       REDIS_URI: redis://iesdbot-redis:6379
+      REDISPORT: 6379
+      REDISIP: iesdbot-redis
       DOCKER: DOCKER
     links:
       - iesdbot-redis
