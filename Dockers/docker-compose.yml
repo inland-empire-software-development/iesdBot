@@ -11,9 +11,9 @@ services:
     command: npm run dev
     working_dir: /usr/src/iesdbot-api
     environment:
-      REDIS_URI: redis://iesdbot-redis:6379
       REDISPORT: 6379
       REDISIP: iesdbot-redis
+      REDISPASS: test
       DOCKER: DOCKER
     links:
       - iesdbot-redis

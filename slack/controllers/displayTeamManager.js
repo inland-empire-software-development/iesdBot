@@ -1,11 +1,13 @@
+const client = require('../../lib/redis');
+
 const TeamManagerModal = require('../views/TeamManagerModal')();
 
-const displayTeamManager = (web, trigger_id) => {
+const displayTeamManager = (web, payload) => {
 
-  console.log(TeamManagerModal);
+  client.setResponseURL(payload.user.id, payload.response_url);
 
   const modal = {
-    trigger_id,
+    trigger_id: payload.trigger_id,
     view: TeamManagerModal
   }
 
