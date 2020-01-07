@@ -14,7 +14,7 @@ services:
       REDISPORT: 6379
       REDISIP: iesdbot-redis
       REDISPASS: test
-      DOCKER: DOCKER
+      MongoURI: mongodb://iesdbot-mongo:27017/IESDSlackTest
     links:
       - iesdbot-redis
       - iesdbot-mongo
