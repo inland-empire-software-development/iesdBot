@@ -16,7 +16,7 @@ const handleLeaveTeam = async (web, payload, Team) => {
   axios.post(responseURL, {
     replace_original: 'true',
     blocks: teamBlock
-  })
+  });
 
   web.views.update({
     view_id: payload.view.id,
@@ -37,7 +37,7 @@ const handleLeaveTeam = async (web, payload, Team) => {
         SectionText('You have successfully left the team.')
       ]
     }
-  })
+  });
 }
 
 module.exports = handleLeaveTeam;

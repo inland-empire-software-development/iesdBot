@@ -3,7 +3,7 @@ const ModalPlainTextInput = require('./ModalPlainTextInput');
 const ModalMultiUsersSelect = require('./ModalMultiUsersSelect');
 const Divider = require('./Divider');
 
-const TeamManagerModal = () => {
+const TeamManagerModal = (teamName, initialUsers, groupSetting) => {
   return {
     title: {
       type: "plain_text",
@@ -25,17 +25,17 @@ const TeamManagerModal = () => {
     blocks: [
       ModalPlainTextInput(
         "team_name", // Action ID
-        "Test Name", // Initial value
+        teamName, // Initial value
         "What would you like to name your team?", // Placeholder Text
         "Team Name" // Label Text
       ),
       ModalMultiUsersSelect(
         "members", // Action ID
-        ["UFL9S0KSP"], // Initial Users
+        initialUsers, // Initial Users
         "Who else will be working with you?", // Placeholder Text
         "Members" // Label Text
       ),
-      TeamModalSettingSelect("open"),
+      TeamModalSettingSelect(groupSetting),
       Divider(),
       {
         type: "actions",
