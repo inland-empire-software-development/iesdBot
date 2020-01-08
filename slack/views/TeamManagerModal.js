@@ -1,7 +1,9 @@
-const ModalInput = require('./ModalInput');
 const TeamModalSettingSelect = require('./TeamModalSettingSelect');
+const ModalPlainTextInput = require('./ModalPlainTextInput');
+const ModalMultiUsersSelect = require('./ModalMultiUsersSelect');
+const Divider = require('./Divider');
 
-const TeamManagerModal = () => {
+const TeamManagerModal = (teamName, initialUsers, groupSetting) => {
   return {
     title: {
       type: "plain_text",
@@ -21,19 +23,43 @@ const TeamManagerModal = () => {
     },
     callback_id: "edit_team_info",
     blocks: [
-      ModalInput(  
-        "plain_text_input", // Input Type
-        "team_name", // action id
+      ModalPlainTextInput(
+        "team_name", // Action ID
+        teamName, // Initial value
         "What would you like to name your team?", // Placeholder Text
         "Team Name" // Label Text
       ),
-      ModalInput(
-        "multi_users_select",
-        "members",
-        "Who else will be working with you?",
-        "Members"
+      ModalMultiUsersSelect(
+        "members", // Action ID
+        initialUsers, // Initial Users
+        "Who else will be working with you?", // Placeholder Text
+        "Members" // Label Text
       ),
-      TeamModalSettingSelect()
+      TeamModalSettingSelect(groupSetting),
+      Divider(),
+      {
+        type: "actions",
+        elements: [
+          {
+            type: "button",
+            text: {
+              type: "plain_text",
+              text: "LEAVE TEAM",
+            },
+            style: "danger",
+            action_id: "leave_team"
+          },
+          {
+            type: "button",
+            text: {
+              type: "plain_text",
+              text: "DISBAND TEAM",
+            },
+            style: "danger",
+            action_id: "disband_team"
+          }
+        ]
+      },
     ]
   }
 }

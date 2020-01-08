@@ -1,0 +1,44 @@
+version: '3.6'
+
+services:
+
+  # Backend API
+  iesdbot-api:
+    container_name: iesdbot-api
+    build:
+      context: ../
+      dockerfile: ./Dockers/api/Dockerfile
+    command: npm run dev
+    working_dir: /usr/src/iesdbot-api
+    environment:
+      REDISPORT: 6379
+      REDISIP: iesdbot-redis
+      REDISPASS: test
+      MongoURI: mongodb://iesdbot-mongo:27017/IESDSlackTest
+    links:
+      - iesdbot-redis
+      - iesdbot-mongo
+    ports:
+      - "5050:5050"
+    volumes:
+      - ../:/usr/src/iesdbot-api
+
+  #To connect on local terminal
+  #mongodb://192.168.99.100:27017
+
+  #To connect in server.js
+  #mongodb://iesdbot-mongo:27017
+
+  iesdbot-mongo:
+    container_name: iesdbot-mongo
+    build: ./mongo
+    environment:
+      MONGO_INITDB_DATABASE: IESDSlackTest
+    ports:
+      - "27017:27017"
+  
+  iesdbot-redis:
+    container_name: iesdbot-redis
+    build: ./redis
+    ports:
+      - "6379:6379"

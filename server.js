@@ -3,7 +3,6 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-const key = require('./config/keys');
 
 // Loggers
 const morgan = require('morgan');
@@ -36,7 +35,7 @@ require('./slack/listeners/interactions')(slackInteractions, web);
 app.get('/', (req, res) => res.send('Server is working'));
 
 app.listen(process.env.PORT, () => {
-  mongoose.connect(key.mongoURI, {
+  mongoose.connect(process.env.MongoURI, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,

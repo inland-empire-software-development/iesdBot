@@ -1,4 +1,27 @@
-const TeamModalSettingSelect = () => {
+const TeamModalSettingSelect = (initialOptionValue) => {
+
+  const initialOption = {
+    text: {
+      type: "plain_text",
+      text: "",
+      emoji: true
+    },
+    value: ""
+  }
+
+  switch(initialOptionValue){
+    case "open":
+      initialOption.text.text = "Open";
+      initialOption.value = "open"
+      break;
+    case "invite":
+      initialOption.text.text = "Invite Only",
+      initialOption.value = "invite"
+    case "closed":
+      initialOption.text.text = "Closed",
+      initialOption.value = "closed"
+  }
+
   return {
     type: "input",
     element: {
@@ -6,9 +29,10 @@ const TeamModalSettingSelect = () => {
       action_id: "group_settings",
       placeholder: {
         type: "plain_text",
-        text: "Who else will be working with you?",
+        text: "Group Settings",
         emoji: true
       },
+      initial_option: initialOption,
       options: [
         {
           text: {
