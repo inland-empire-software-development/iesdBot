@@ -56,7 +56,7 @@ const TeamManagerModal = (teamName, initialUsers, groupSetting) => {
               text: "DISBAND TEAM",
             },
             style: "danger",
-            action_id: "disband_team"
+            action_id: "delete_team"
           }
         ]
       },
