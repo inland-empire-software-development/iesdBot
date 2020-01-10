@@ -1,5 +1,6 @@
 const displayTeamCreate = require('../controllers/displayTeamCreate');
 const createTeam = require('../controllers/createTeam');
+const handleCreateTeam = require('../controllers/handleCreateTeam');
 const handleSelectTeam = require('../controllers/handleSelectTeam');
 const handleLeaveTeam = require('../controllers/handleLeaveTeam');
 const displayTeamManager = require('../controllers/displayTeamManager');
@@ -25,7 +26,7 @@ module.exports = (slackInteractions, web) => {
   slackInteractions.action({ actionId: 'create_team' }, (payload) => displayTeamCreate(web, payload.trigger_id));
 
   // Handles the user's submission of the "team create" modal
-  slackInteractions.viewSubmission({ callbackId: 'submit_team' }, (payload) => createTeam(payload, Team));
+  slackInteractions.viewSubmission({ callbackId: 'submit_team' }, (payload) => handleCreateTeam(payload, Team));
 
   // Handles the user's submission of the "edit team info" modal
   slackInteractions.viewSubmission({ callbackId: 'edit_team_info' }, (payload) => handleEditTeamInfo(payload, Team));
