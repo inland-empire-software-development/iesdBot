@@ -16,12 +16,13 @@ const teamSchema = new Schema({
   //   unique: true
   // },
   // Store team member's Slack ID
-  teamMembers: [
-    {
-      type: 'String',
-      unique: true
-    }
-  ],
+  teamMembers: {
+    type:[{
+        type: 'String',
+        unique: true
+    }],
+    validate: [arrayLimit, '{PATH} exceeds the limit of 5']
+  },
   // Whether the team is open, closed or invite-only
   teamSetting: {
     type: 'String'
@@ -31,5 +32,9 @@ const teamSchema = new Schema({
     type: Date,
   }
 });
+
+function arrayLimit(val) {
+  return val.length <= 5;
+}
 
 module.exports = mongoose.model('Team', teamSchema);
