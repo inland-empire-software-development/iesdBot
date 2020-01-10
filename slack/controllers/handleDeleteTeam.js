@@ -1,10 +1,4 @@
-const axios = require('axios');
-
-// lib
-const client = require('../../lib/redis');
-
 // controllers
-const generateTeamBlock = require('./generateTeamBlock');
 const removeTeam = require('./removeTeam');
 const refreshTeamMessage = require('./refreshTeamMessage');
 

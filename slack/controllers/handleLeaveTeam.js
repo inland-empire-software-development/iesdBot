@@ -1,22 +1,13 @@
-const client = require('../../lib/redis');
-
+// controllers
+const refreshTeamMessage = require('./refreshTeamMessage');
 const removeUserFromTeam = require('./removeUserFromTeam');
-const generateTeamBlock = require('./generateTeamBlock');
-const axios = require('axios');
 
 const SectionText = require('../views/SectionText');
 
-const handleLeaveTeam = async (web, payload, Team) => {
-  await removeUserFromTeam(payload, Team);
+const handleLeaveTeam = async (web, payload, db) => {
+  await removeUserFromTeam(payload, db);
 
-  const teamBlock = await generateTeamBlock(Team, payload.user.id);
-
-  const responseURL = await client.getResponseURL(payload.user.id);
-
-  axios.post(responseURL, {
-    replace_original: 'true',
-    blocks: teamBlock
-  });
+  refreshTeamMessage(db, payload);
 
   web.views.update({
     view_id: payload.view.id,
