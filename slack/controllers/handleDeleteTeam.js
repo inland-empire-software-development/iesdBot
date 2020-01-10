@@ -6,6 +6,7 @@ const client = require('../../lib/redis');
 // controllers
 const generateTeamBlock = require('./generateTeamBlock');
 const removeTeam = require('./removeTeam');
+const refreshTeamMessage = require('./refreshTeamMessage');
 
 // views
 const SectionText = require('../views/SectionText');
@@ -13,14 +14,8 @@ const SectionText = require('../views/SectionText');
 const handleDeleteTeam = async (web, payload, db) => {
   await removeTeam(payload, db)
 
-  const teamBlock = await generateTeamBlock(db, payload.user.id);
-
-  const responseURL = await client.getResponseURL(payload.user.id);
-
-  axios.post(responseURL, {
-    replace_original: 'true',
-    blocks: teamBlock
-  });
+  // Reload displayed teams in original message
+  refreshTeamMessage(db, payload);
 
   web.views.update({
     view_id: payload.view.id,
