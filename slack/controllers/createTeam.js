@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const createTeam = (payload, db) => {
+const createTeam = async (payload, db) => {
   const values = payload.view.state.values;
 
   let teamName;
@@ -20,7 +20,7 @@ const createTeam = (payload, db) => {
     }
   }
 
-  axios.get('https://api.meetup.com/iesd-meetup/events?&sign=true&photo-host=public')
+  await axios.get('https://api.meetup.com/iesd-meetup/events?&sign=true&photo-host=public')
   .then(response => {
     const events = response.data;
     
