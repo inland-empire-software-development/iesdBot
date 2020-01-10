@@ -1,6 +1,6 @@
 FROM node:latest
 
-WORKDIR /usr/src/iesdBot
+WORKDIR /usr/src/iesdbot-api
 
 COPY ./ ./
 
