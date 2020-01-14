@@ -1,5 +1,4 @@
 const displayTeamCreate = require('../controllers/displayTeamCreate');
-const createTeam = require('../controllers/createTeam');
 const handleCreateTeam = require('../controllers/handleCreateTeam');
 const handleSelectTeam = require('../controllers/handleSelectTeam');
 const handleLeaveTeam = require('../controllers/handleLeaveTeam');
