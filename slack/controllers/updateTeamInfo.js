@@ -9,7 +9,7 @@ const updateTeamInfo = async (payload, db) => {
       team.teamName = values[value].team_name.value;
     } else if(values[value].hasOwnProperty('members')){
       team.teamMembers = values[value].members.selected_users;
-      teamMembers.unshift(payload.user.id);
+      team.teamMembers.unshift(payload.user.id);
     } else {
       team.teamSetting = values[value].group_settings.selected_option.value;
     }
