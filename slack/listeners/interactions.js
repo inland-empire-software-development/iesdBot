@@ -16,6 +16,7 @@ module.exports = (slackInteractions, web) => {
   // Handles removing the current user when they click "leave" from the team
   slackInteractions.action({ actionId: 'leave_team' }, (payload) => handleLeaveTeam(web, payload, Team));
 
+  // Handles deleting the current user's team when they click "disband" the team
   slackInteractions.action({ actionId: 'delete_team' } , (payload) => handleDeleteTeam(web, payload, Team));
 
   // Handles opening the modal for managing the user's team

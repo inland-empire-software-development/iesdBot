@@ -11,9 +11,24 @@ const refreshTeamMessage = async (db, payload) => {
 
   const responseURL = await client.getResponseURL(payload.user.id);
 
-  axios.post(responseURL, {
-    replace_original: 'true',
-    blocks: teamBlock
+  const allResponseURL = await client.getAllResponseURL();
+
+  const allAxiosRequest = allResponseURL.map((responseURL) => {
+    console.log(responseURL);
+    return axios.post(responseURL, {
+      replace_original: 'true',
+      blocks: teamBlock
+    });
+  });
+
+  // axios.post(responseURL, {
+  //   replace_original: 'true',
+  //   blocks: teamBlock
+  // });
+
+  axios.all(allAxiosRequest)
+  .catch(err => {
+    console.log('ERR', err);
   });
 }
 
