@@ -1,7 +1,4 @@
-const axios = require('axios');
 const generateTeamBlock = require('./generateTeamBlock');
-
-let Team = require('../views/Team');
 
 const displayTeam = async (web, db, event) => {
 

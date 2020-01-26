@@ -21,7 +21,8 @@ const generateListOfTeamsWithUserTeam = (teams, userTeam) => {
   const ListOfTeams = teams.map(team => {
     const { teamName, teamMembers } = team;
     if(teamName === userTeam.teamName){
-      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Manage", "manage_team");
+      // return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Manage", "manage_team");
+      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Manage", "view_team");
     }
 
     return TeamInfo(teamName, teamMembers, teamMembers.length);
