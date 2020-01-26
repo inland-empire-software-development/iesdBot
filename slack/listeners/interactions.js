@@ -1,9 +1,9 @@
 const displayTeamCreate = require('../controllers/displayTeamCreate');
-const createTeam = require('../controllers/createTeam');
 const handleCreateTeam = require('../controllers/handleCreateTeam');
 const handleSelectTeam = require('../controllers/handleSelectTeam');
 const handleLeaveTeam = require('../controllers/handleLeaveTeam');
 const displayTeamManager = require('../controllers/displayTeamManager');
+const displayTeamManagerReadOnly = require('../controllers/displayTeamManagerReadOnly')
 const handleEditTeamInfo = require('../controllers/handleEditTeamInfo');
 const handleDeleteTeam = require('../controllers/handleDeleteTeam');
 
@@ -17,10 +17,13 @@ module.exports = (slackInteractions, web) => {
   // Handles removing the current user when they click "leave" from the team
   slackInteractions.action({ actionId: 'leave_team' }, (payload) => handleLeaveTeam(web, payload, Team));
 
+  // Handles deleting the current user's team when they click "disband" the team
   slackInteractions.action({ actionId: 'delete_team' } , (payload) => handleDeleteTeam(web, payload, Team));
 
   // Handles opening the modal for managing the user's team
   slackInteractions.action({ actionId: 'manage_team' }, (payload) => displayTeamManager(web, payload, Team));
+
+  slackInteractions.action({ actionId: 'view_team' }, (payload) => displayTeamManagerReadOnly(web, payload, Team));
 
   // Handles displaying the "team create" modal
   slackInteractions.action({ actionId: 'create_team' }, (payload) => displayTeamCreate(web, payload.trigger_id));

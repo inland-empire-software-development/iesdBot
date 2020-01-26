@@ -17,23 +17,28 @@ const generateListOfTeamsWithButton = (teams) => {
   return ListOfTeams;
 }
 
-const generateListOfTeamsWithUserTeam = (teams, userTeam) => {
+const generateListOfTeamsWithUserTeam = (teams, userTeam, teamOwner, isOwner) => {
   const ListOfTeams = teams.map(team => {
     const { teamName, teamMembers } = team;
-    if(teamName === userTeam.teamName){
-      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Manage", "manage_team");
+    if(teamName !== userTeam.teamName){
+      return TeamInfo(teamName, teamMembers, teamMembers.length);
     }
 
-    return TeamInfo(teamName, teamMembers, teamMembers.length);
+    if(isOwner){
+      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Manage", "manage_team");
+    } else {
+      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Manage", "view_team");
+    }
+
   });
 
   return ListOfTeams;
 }
 
-const Team = (teams, userTeam) => {
+const Team = (teams, userTeam, teamOwner, isOwner) => {
   let ListOfTeams = [];
   if(userTeam){
-    ListOfTeams = generateListOfTeamsWithUserTeam(teams, userTeam);
+    ListOfTeams = generateListOfTeamsWithUserTeam(teams, userTeam, teamOwner, isOwner);
   } else {
     ListOfTeams = generateListOfTeamsWithButton(teams);
   }
