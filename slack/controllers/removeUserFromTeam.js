@@ -7,7 +7,7 @@ const removeUserFromTeam = async (payload, db) => {
 
   if(team.teamMembers.length <= 1){
     removeTeam(payload, db);
-  } else if(team.teamOwner = payload.user.id){
+  } else if(team.teamOwner === payload.user.id){
     db.updateOne({ teamMembers: payload.user.id }, { $pull: { teamMembers: payload.user.id }, teamOwner: team.teamMembers[1]}, (err) => {
       if(err){
         winston.error(`Failed to remove ${payload.user.username}(${payload.user.id}) from team ${payload.actions[0].value}`);

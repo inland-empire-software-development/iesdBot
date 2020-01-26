@@ -21,8 +21,16 @@ const generateTeamBlock = async (db, userId) => {
   // let teams = await db.find({ dateOfEvent: hackDayDate });
   const teams = await db.find();
   const userTeam = await db.find({ teamMembers: userId });
+  let teamOwner;
+  let isOwner = false
 
-  const teamBlock = await Team(teams, userTeam[0]);
+  // If db was able to find user's team, assign teamOwner and isOwner
+  if(userTeam.length > 0){
+    teamOwner = userTeam[0].teamOwner;
+    isOwner = teamOwner === userId;
+  }
+
+  const teamBlock = await Team(teams, userTeam[0], teamOwner, isOwner);
   return teamBlock;
 }
 
