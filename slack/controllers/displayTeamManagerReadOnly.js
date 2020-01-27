@@ -14,7 +14,7 @@ const displayTeamManagerReadOnly = async (web, payload, db) => {
 
   const modal = {
     trigger_id: payload.trigger_id,
-    view: TeamManagerModalReadOnly(userTeam.teamName, teamMembers, userTeam.teamSetting)
+    view: TeamManagerModalReadOnly(userTeam.teamName, userTeam.teamOwner, teamMembers, userTeam.teamSetting)
   }
   
   return web.views.open(modal);
