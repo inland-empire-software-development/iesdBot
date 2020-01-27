@@ -2,7 +2,7 @@
 const refreshTeamMesssage = require('./refreshTeamMessage');
 const updateTeamInfo = require('./updateTeamInfo');
 
-const handleEditTeamInfo = async (payload, db) => {
+const handleEditTeamInfo = async (web, payload, db) => {
   updateTeamInfo(payload, db);
 
   refreshTeamMesssage(web, db, payload);

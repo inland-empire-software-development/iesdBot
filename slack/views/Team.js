@@ -2,6 +2,7 @@ const TeamGreeting = require('./TeamGreeting');
 const Divider = require('./Divider');
 const TeamEventInfo = require('./TeamEventInfo');
 const TeamCreateButton = require('./TeamCreateButton');
+const TeamManageButton = require('./TeamManageButton');
 
 const TeamInfo = require('./TeamInfo');
 const TeamInfoWithButton = require('./TeamInfoWithButton');
@@ -39,19 +40,30 @@ const Team = (teams, userTeam, teamOwner, isOwner) => {
   let ListOfTeams = [];
   if(userTeam){
     ListOfTeams = generateListOfTeamsWithUserTeam(teams, userTeam, teamOwner, isOwner);
+
+    return [
+      TeamGreeting(),
+      Divider(),
+      TeamEventInfo(),
+      Divider(),
+      ...ListOfTeams,
+      Divider(),
+      TeamManageButton('view_team')
+    ]
+
   } else {
     ListOfTeams = generateListOfTeamsWithButton(teams);
-  }
 
-  return [
-    TeamGreeting(),
-    Divider(),
-    TeamEventInfo(),
-    Divider(),
-    ...ListOfTeams,
-    Divider(),
-    TeamCreateButton()
-  ]
+    return [
+      TeamGreeting(),
+      Divider(),
+      TeamEventInfo(),
+      Divider(),
+      ...ListOfTeams,
+      Divider(),
+      TeamCreateButton()
+    ]
+  }
 }
 
 module.exports = Team
