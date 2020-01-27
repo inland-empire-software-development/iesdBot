@@ -41,15 +41,27 @@ const Team = (teams, userTeam, teamOwner, isOwner) => {
   if(userTeam){
     ListOfTeams = generateListOfTeamsWithUserTeam(teams, userTeam, teamOwner, isOwner);
 
-    return [
-      TeamGreeting(),
-      Divider(),
-      TeamEventInfo(),
-      Divider(),
-      ...ListOfTeams,
-      Divider(),
-      TeamManageButton('view_team')
-    ]
+    if(isOwner){
+      return [
+        TeamGreeting(),
+        Divider(),
+        TeamEventInfo(),
+        Divider(),
+        ...ListOfTeams,
+        Divider(),
+        TeamManageButton('manage_team')
+      ]
+    } else {
+      return [
+        TeamGreeting(),
+        Divider(),
+        TeamEventInfo(),
+        Divider(),
+        ...ListOfTeams,
+        Divider(),
+        TeamManageButton('view_team')
+      ]
+    }
 
   } else {
     ListOfTeams = generateListOfTeamsWithButton(teams);

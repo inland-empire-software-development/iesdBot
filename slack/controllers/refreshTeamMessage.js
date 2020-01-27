@@ -20,7 +20,7 @@ const refreshTeamMessage = async (web, db, payload) => {
     }
 
     return web.chat.update(message);
-  })
+  });
 }
 
 module.exports = refreshTeamMessage;
