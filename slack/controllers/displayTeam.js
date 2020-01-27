@@ -1,24 +1,22 @@
+const client = require('../../lib/redis');
+
 const generateTeamBlock = require('./generateTeamBlock');
 
 const displayTeam = async (web, db, event) => {
 
   const teamBlock = await generateTeamBlock(db, event.user);
   
-  // const message = {
-  //   channel: 'iesd-bot',
-  //   user: event.user,
-  //   blocks: teamBlock
-  // }
-
-  // return web.chat.postEphemeral(message);
-
   const message = {
     channel: event.user,
     blocks: teamBlock,
     as_user: true
   }
 
-  return web.chat.postMessage(message);
+  const postMessage = await web.chat.postMessage(message);
+
+  await client.setTimestamp(event.user, postMessage.ts, postMessage.channel);
+
+  return postMessage;
 }
 
 module.exports = displayTeam;

@@ -6,8 +6,6 @@ const TeamManagerModalReadOnly = require('../views/TeamManagerModalReadOnly');
 
 const displayTeamManagerReadOnly = async (web, payload, db) => {
 
-  client.setResponseURL(payload.user.id, payload.response_url);
-
   const userTeam = await db.findOne({ teamMembers: payload.user.id });
 
   const teamMembers = userTeam.teamMembers.map(member => `<@${member}>`)

@@ -2,10 +2,10 @@
 const refreshTeamMessage = require('./refreshTeamMessage');
 const createTeam = require('./createTeam');
 
-const handleCreateTeam = async (payload, db) => {
+const handleCreateTeam = async (web, payload, db) => {
   await createTeam(payload, db);
 
-  refreshTeamMessage(db, payload);
+  refreshTeamMessage(web, db, payload);
 }
 
 module.exports = handleCreateTeam;

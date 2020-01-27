@@ -29,9 +29,9 @@ module.exports = (slackInteractions, web) => {
   slackInteractions.action({ actionId: 'create_team' }, (payload) => displayTeamCreate(web, payload.trigger_id));
 
   // Handles the user's submission of the "team create" modal
-  slackInteractions.viewSubmission({ callbackId: 'submit_team' }, (payload) => handleCreateTeam(payload, Team));
+  slackInteractions.viewSubmission({ callbackId: 'submit_team' }, (payload) => handleCreateTeam(web, payload, Team));
 
   // Handles the user's submission of the "edit team info" modal
-  slackInteractions.viewSubmission({ callbackId: 'edit_team_info' }, (payload) => handleEditTeamInfo(payload, Team));
+  slackInteractions.viewSubmission({ callbackId: 'edit_team_info' }, (payload) => handleEditTeamInfo(web, payload, Team));
 
 }
