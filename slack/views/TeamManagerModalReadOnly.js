@@ -3,7 +3,7 @@ const ModalPlainTextInput = require('./ModalPlainTextInput');
 const ModalMultiUsersSelect = require('./ModalMultiUsersSelect');
 const Divider = require('./Divider');
 
-const TeamManagerModalReadOnly = (teamName, initialUsers, groupSetting) => {
+const TeamManagerModalReadOnly = (teamName, teamOwner, initialUsers, groupSetting) => {
   return {
     title: {
       type: "plain_text",
@@ -25,14 +25,21 @@ const TeamManagerModalReadOnly = (teamName, initialUsers, groupSetting) => {
           "text": `*Team Name:*\n ${teamName}`
         },
       },
-          {
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": `*Team Owner:*\n <@${teamOwner}>`
+        },
+      },
+      {
         "type": "section",
         "text": {
           "type": "mrkdwn",
           "text": `*Members:*\n ${initialUsers}`
         },
       },
-          {
+      {
         "type": "section",
         "text": {
           "type": "mrkdwn",
