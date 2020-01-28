@@ -10,21 +10,21 @@ const removeUserFromTeam = async (payload, db) => {
   } else if(team.teamOwner === payload.user.id){
     db.updateOne({ teamMembers: payload.user.id }, { $pull: { teamMembers: payload.user.id }, teamOwner: team.teamMembers[1]}, (err) => {
       if(err){
-        winston.error(`Failed to remove ${payload.user.username}(${payload.user.id}) from team ${payload.actions[0].value}`);
+        winston.error(`Failed to remove ${payload.user.username}(${payload.user.id}) from team ${team.teamName}`);
         return winston.error('Error:', err);
       }
   
-      winston.info(`Successfully removed ${payload.user.username}(${payload.user.id}) from team ${payload.actions[0].value}`);
+      winston.info(`Successfully removed ${payload.user.username}(${payload.user.id}) from team ${team.teamName}`);
       return winston.info(`The new owner of team ${team.teamName} is ${team.teamMembers[1]}.`);
     })
   } else {
     db.updateOne({ teamMembers: payload.user.id }, { $pull: { teamMembers: payload.user.id }}, (err) => {
       if(err){
-        winston.error(`Failed to remove ${payload.user.username}(${payload.user.id}) from team ${payload.actions[0].value}`);
+        winston.error(`Failed to remove ${payload.user.username}(${payload.user.id}) from team ${team.teamName}`);
         return winston.error('Error:', err);
       }
   
-      return winston.info(`Successfully removed ${payload.user.username}(${payload.user.id}) from team ${payload.actions[0].value}`);
+      return winston.info(`Successfully removed ${payload.user.username}(${payload.user.id}) from team ${team.teamName}`);
     })
   }
 }

@@ -9,9 +9,6 @@ const handleDeleteTeam = require('../controllers/handleDeleteTeam');
 
 const Team = require('../../models/Team');
 
-//temp
-const client = require('../../lib/redis');
-
 module.exports = (slackInteractions, web) => {
 
   // Handles adding the current user when they click "choose" to the team

@@ -7,11 +7,13 @@ const client = require('../../lib/redis');
 const generateTeamBlock = require('./generateTeamBlock');
 
 const refreshTeamMessage = async (web, db, payload) => {
-  const teamBlock = await generateTeamBlock(db, payload.user.id);
+  // const teamBlock = await generateTeamBlock(db, payload.user.id);
 
   const multiMessageInfo = await client.getAllTimestamp();
 
-  multiMessageInfo.forEach((messageInfo) => {
+  multiMessageInfo.forEach(async (messageInfo) => {
+    const teamBlock = await generateTeamBlock(db, messageInfo.id);
+
     const message = {
       channel: messageInfo.channel,
       blocks: teamBlock,
