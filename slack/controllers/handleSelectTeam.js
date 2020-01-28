@@ -5,7 +5,7 @@ const addUserToTeam = require('./addUserToTeam');
 const handleSelectTeam = async (web, payload, db) => {
   await addUserToTeam(payload, db);
 
-  refreshTeamMessage(db, payload);
+  refreshTeamMessage(web, db, payload);
 }
 
 module.exports = handleSelectTeam;

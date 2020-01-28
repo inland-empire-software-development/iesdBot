@@ -9,7 +9,7 @@ const handleDeleteTeam = async (web, payload, db) => {
   await removeTeam(payload, db)
 
   // Reload displayed teams in original message
-  refreshTeamMessage(db, payload);
+  refreshTeamMessage(web, db, payload);
 
   web.views.update({
     view_id: payload.view.id,

@@ -6,29 +6,22 @@ const client = require('../../lib/redis');
 // controllers
 const generateTeamBlock = require('./generateTeamBlock');
 
-const refreshTeamMessage = async (db, payload) => {
-  const teamBlock = await generateTeamBlock(db, payload.user.id);
+const refreshTeamMessage = async (web, db, payload) => {
+  // const teamBlock = await generateTeamBlock(db, payload.user.id);
 
-  const responseURL = await client.getResponseURL(payload.user.id);
+  const multiMessageInfo = await client.getAllTimestamp();
 
-  const allResponseURL = await client.getAllResponseURL();
+  multiMessageInfo.forEach(async (messageInfo) => {
+    const teamBlock = await generateTeamBlock(db, messageInfo.id);
 
-  const allAxiosRequest = allResponseURL.map((responseURL) => {
-    console.log(responseURL);
-    return axios.post(responseURL, {
-      replace_original: 'true',
-      blocks: teamBlock
-    });
-  });
+    const message = {
+      channel: messageInfo.channel,
+      blocks: teamBlock,
+      as_user: true,
+      ts: messageInfo.timestamp
+    }
 
-  // axios.post(responseURL, {
-  //   replace_original: 'true',
-  //   blocks: teamBlock
-  // });
-
-  axios.all(allAxiosRequest)
-  .catch(err => {
-    console.log('ERR', err);
+    return web.chat.update(message);
   });
 }
 

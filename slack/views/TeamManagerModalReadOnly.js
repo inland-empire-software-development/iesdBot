@@ -1,6 +1,3 @@
-const TeamModalSettingSelect = require('./TeamModalSettingSelect');
-const ModalPlainTextInput = require('./ModalPlainTextInput');
-const ModalMultiUsersSelect = require('./ModalMultiUsersSelect');
 const Divider = require('./Divider');
 
 const TeamManagerModalReadOnly = (teamName, teamOwner, initialUsers, groupSetting) => {

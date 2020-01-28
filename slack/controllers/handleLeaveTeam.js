@@ -7,7 +7,7 @@ const SectionText = require('../views/SectionText');
 const handleLeaveTeam = async (web, payload, db) => {
   await removeUserFromTeam(payload, db);
 
-  refreshTeamMessage(db, payload);
+  refreshTeamMessage(web, db, payload);
 
   web.views.update({
     view_id: payload.view.id,

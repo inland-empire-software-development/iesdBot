@@ -4,8 +4,6 @@ const TeamManagerModal = require('../views/TeamManagerModal');
 
 const displayTeamManager = async (web, payload, db) => {
 
-  client.setResponseURL(payload.user.id, payload.response_url);
-
   const userTeam = await db.findOne({ teamMembers: payload.user.id });
 
   /**
