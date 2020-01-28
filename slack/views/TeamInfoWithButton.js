@@ -1,11 +1,11 @@
-const TeamInfoWithButton = (teamName, teamMembers, teamSize, buttonText, actionId) => {
+const TeamInfoWithButton = (teamName, teamMembers, teamSize, teamSetting, buttonText, actionId) => {
   const teamMemberMentions = teamMembers.map(member => ` <@${member}>`);
 
   return {
     type: "section",
     text: {
       type: "mrkdwn",
-      text: `*${teamName} (${teamSize})*\n${teamMemberMentions}\n`
+      text: `*${teamName} (${teamSize}) (${teamSetting})*\n${teamMemberMentions}\n`
     },
     accessory: {
       type: "button",

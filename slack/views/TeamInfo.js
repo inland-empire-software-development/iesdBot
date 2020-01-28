@@ -1,11 +1,11 @@
-const TeamInfo = (teamName, teamMembers, teamSize) => {
+const TeamInfo = (teamName, teamMembers, teamSize, teamSetting) => {
   const teamMemberMentions = teamMembers.map(member => ` <@${member}>`);
 
   return {
     type: "section",
     text: {
       type: "mrkdwn",
-      text: `*${teamName} (${teamSize})*\n${teamMemberMentions}\n`
+      text: `*${teamName} (${teamSize}) (${teamSetting})*\n${teamMemberMentions}\n`
     }
   }
 };

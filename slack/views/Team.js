@@ -12,7 +12,14 @@ const generateListOfTeamsWithButton = (teams) => {
   const ListOfTeams = teams.map(team => {
     const { teamName, teamMembers } = team;
 
-    return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Choose", "team_select");
+    switch(team.teamSetting){
+      case "Open":
+        return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, team.teamSetting, "Choose", "team_select");
+      case "Invite":
+        return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, team.teamSetting, "Request To Join", "team_select");
+      default:
+        return TeamInfo(teamName, teamMembers, teamMembers.length, team.teamSetting);
+    }
   });
 
   return ListOfTeams;
@@ -22,13 +29,13 @@ const generateListOfTeamsWithUserTeam = (teams, userTeam, teamOwner, isOwner) =>
   const ListOfTeams = teams.map(team => {
     const { teamName, teamMembers } = team;
     if(teamName !== userTeam.teamName){
-      return TeamInfo(teamName, teamMembers, teamMembers.length);
+      return TeamInfo(teamName, teamMembers, teamMembers.length, team.teamSetting);
     }
 
     if(isOwner){
-      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Manage", "manage_team");
+      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, team.teamSetting, "Manage", "manage_team");
     } else {
-      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Manage", "view_team");
+      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, team.teamSetting, "Manage", "view_team");
     }
 
   });
