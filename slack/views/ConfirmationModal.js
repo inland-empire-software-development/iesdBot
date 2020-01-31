@@ -1,10 +1,31 @@
-const ConfirmationModal = () => {
+const ConfirmationModal = (title, message, submitBtn, callback_id) => {
   return {
-    type: "section",
-    text: {
-      type: "mrkdwn",
-      text: `test`
-    }
+    title: {
+      type: "plain_text",
+      text: title,
+      emoji: true
+    },
+    type: "modal",
+    close: {
+      type: "plain_text",
+      text: "Cancel",
+      emoji: true
+    },
+    submit: {
+      type: "plain_text",
+      text: submitBtn,
+      emoji: true,
+    },
+    callback_id,
+    blocks: [
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: message
+        }
+      }
+    ]
   }
 }
 
