@@ -16,7 +16,7 @@ const generateListOfTeamsWithButton = (teams) => {
       case "Open":
         return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, team.teamSetting, "Choose", "team_select");
       case "Invite":
-        return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, team.teamSetting, "Request To Join", "team_select");
+        return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, team.teamSetting, "Request To Join", "request_to_join");
       default:
         return TeamInfo(teamName, teamMembers, teamMembers.length, team.teamSetting);
     }

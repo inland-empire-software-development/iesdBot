@@ -9,10 +9,22 @@ const handleDeleteTeam = require('../controllers/handleDeleteTeam');
 
 const Team = require('../../models/Team');
 
+//temp
+const ConfirmationModal = require('../views/ConfirmationModal');
+
 module.exports = (slackInteractions, web) => {
 
   // Handles adding the current user when they click "choose" to the team
   slackInteractions.action({ actionId: 'team_select' }, (payload) => handleSelectTeam(web, payload, Team));
+
+  slackInteractions.action({ actionId: 'request_to_join' }, (payload) => {
+    const modal = {
+      trigger_id: payload.trigger_id,
+      view: ConfirmationModal()
+    }
+
+    web.views.open(modal);
+  });
 
   // Handles removing the current user when they click "leave" from the team
   slackInteractions.action({ actionId: 'leave_team' }, (payload) => handleLeaveTeam(web, payload, Team));
