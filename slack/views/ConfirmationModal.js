@@ -1,4 +1,4 @@
-const ConfirmationModal = (title, message, submitBtn, callback_id) => {
+const ConfirmationModal = (title, message, submitBtn, callback_id, private_metadata) => {
   return {
     title: {
       type: "plain_text",
@@ -16,6 +16,7 @@ const ConfirmationModal = (title, message, submitBtn, callback_id) => {
       text: submitBtn,
       emoji: true,
     },
+    private_metadata,
     callback_id,
     blocks: [
       {

@@ -7,7 +7,7 @@ const handleRequestToJoin = (web, payload) => {
 
   const modal = {
     trigger_id: payload.trigger_id,
-    view: ConfirmationModal("Request To Join", modalMessage, "Send Request", "send_request_to_join")
+    view: ConfirmationModal("Request To Join", modalMessage, "Send Request", "send_request_to_join", payload.actions[0].value)
   }
 
   web.views.open(modal);

@@ -39,8 +39,20 @@ module.exports = (slackInteractions, web) => {
   // Handles the user's submission of the "edit team info" modal
   slackInteractions.viewSubmission({ callbackId: 'edit_team_info' }, (payload) => handleEditTeamInfo(web, payload, Team));
 
-  slackInteractions.viewSubmission({ callbackId: 'send_request_to_join' }, (payload) => {
+  slackInteractions.viewSubmission({ callbackId: 'send_request_to_join' }, async (payload) => {
+    const userTeam = await Team.findOne({ teamName: payload.view.private_metadata });
+
+    // console.log(userTeam.teamOwner);
     console.log(payload);
+    // UERTLGB9C
+
+    // const message = {
+    //   channel: 'UERTLGB9C',
+    //   blocks: teamBlock,
+    //   as_user: true
+    // }
+
+    // const postMessage = await web.chat.postMessage(message);
   });
 
 }
