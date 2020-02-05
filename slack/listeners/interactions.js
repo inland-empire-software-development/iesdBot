@@ -10,6 +10,9 @@ const handleDeleteTeam = require('../controllers/handleDeleteTeam');
 
 const Team = require('../../models/Team');
 
+//temp
+const Divider = require('../views/Divider');
+
 module.exports = (slackInteractions, web) => {
 
   // Handles adding the current user when they click "choose" to the team
@@ -39,20 +42,58 @@ module.exports = (slackInteractions, web) => {
   // Handles the user's submission of the "edit team info" modal
   slackInteractions.viewSubmission({ callbackId: 'edit_team_info' }, (payload) => handleEditTeamInfo(web, payload, Team));
 
-  slackInteractions.viewSubmission({ callbackId: 'send_request_to_join' }, async (payload) => {
-    const userTeam = await Team.findOne({ teamName: payload.view.private_metadata });
+  // slackInteractions.viewSubmission({ callbackId: 'send_request_to_join' }, async (payload) => {
+  //   const userTeam = await Team.findOne({ teamName: payload.view.private_metadata });
 
-    // console.log(userTeam.teamOwner);
-    console.log(payload);
-    // UERTLGB9C
+  //   // console.log(userTeam.teamOwner);
+  //   console.log(payload);
+  //   // UERTLGB9C
 
-    // const message = {
-    //   channel: 'UERTLGB9C',
-    //   blocks: teamBlock,
-    //   as_user: true
-    // }
+  //   // UPDATE MODAL saying request has been sent
+  //   // Add user to list of pending invites for team
+  //   // Add an option in team manager to manage pending invites
+  //   // Will change modal to display pending invites
 
-    // const postMessage = await web.chat.postMessage(message);
-  });
+  //   const message = {
+  //     channel: 'UERTLGB9C',
+  //     blocks: [
+  //       Divider(),
+  //       {
+  //         type: "section",
+  //         text: {
+  //           type: "mrkdwn",
+  //           text: `<@${payload.user.id}> has requested to join your team.`
+  //         }
+  //       },
+  //       {
+  //         "type": "actions",
+  //         "elements": [
+  //           {
+  //             "type": "button",
+  //             "text": {
+  //               "type": "plain_text",
+  //               "text": "Accept",
+  //               "emoji": true
+  //             },
+  //             "value": "accept_request_to_join"
+  //           },
+  //           {
+  //             "type": "button",
+  //             "text": {
+  //               "type": "plain_text",
+  //               "text": "Decline",
+  //               "emoji": true
+  //             },
+  //             "value": "decline_request_to_join"
+  //           },
+  //         ]
+  //       },
+  //       Divider()
+  //     ],
+  //     as_user: true
+  //   }
+
+  //   web.chat.postMessage(message);
+  // });
 
 }
