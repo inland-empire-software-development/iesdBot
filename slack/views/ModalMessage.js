@@ -1,4 +1,4 @@
-const ConfirmationModal = (title, message, submitBtn, callback_id, private_metadata) => {
+const ModalMessage = (title, message, submitBtn, callback_id, private_metadata) => {
   return {
     title: {
       type: "plain_text",
@@ -30,4 +30,4 @@ const ConfirmationModal = (title, message, submitBtn, callback_id, private_metad
   }
 }
 
-module.exports = ConfirmationModal;
+module.exports = ModalMessage;

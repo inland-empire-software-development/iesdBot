@@ -2,6 +2,7 @@ const displayTeamCreate = require('../controllers/displayTeamCreate');
 const handleCreateTeam = require('../controllers/handleCreateTeam');
 const handleSelectTeam = require('../controllers/handleSelectTeam');
 const handleRequestToJoin = require('../controllers/handleRequestToJoin');
+const handleSendRequestToJoin = require('../controllers/handleSendRequestToJoin');
 const handleLeaveTeam = require('../controllers/handleLeaveTeam');
 const displayTeamManager = require('../controllers/displayTeamManager');
 const displayTeamManagerReadOnly = require('../controllers/displayTeamManagerReadOnly')
@@ -42,58 +43,7 @@ module.exports = (slackInteractions, web) => {
   // Handles the user's submission of the "edit team info" modal
   slackInteractions.viewSubmission({ callbackId: 'edit_team_info' }, (payload) => handleEditTeamInfo(web, payload, Team));
 
-  // slackInteractions.viewSubmission({ callbackId: 'send_request_to_join' }, async (payload) => {
-  //   const userTeam = await Team.findOne({ teamName: payload.view.private_metadata });
-
-  //   // console.log(userTeam.teamOwner);
-  //   console.log(payload);
-  //   // UERTLGB9C
-
-  //   // UPDATE MODAL saying request has been sent
-  //   // Add user to list of pending invites for team
-  //   // Add an option in team manager to manage pending invites
-  //   // Will change modal to display pending invites
-
-  //   const message = {
-  //     channel: 'UERTLGB9C',
-  //     blocks: [
-  //       Divider(),
-  //       {
-  //         type: "section",
-  //         text: {
-  //           type: "mrkdwn",
-  //           text: `<@${payload.user.id}> has requested to join your team.`
-  //         }
-  //       },
-  //       {
-  //         "type": "actions",
-  //         "elements": [
-  //           {
-  //             "type": "button",
-  //             "text": {
-  //               "type": "plain_text",
-  //               "text": "Accept",
-  //               "emoji": true
-  //             },
-  //             "value": "accept_request_to_join"
-  //           },
-  //           {
-  //             "type": "button",
-  //             "text": {
-  //               "type": "plain_text",
-  //               "text": "Decline",
-  //               "emoji": true
-  //             },
-  //             "value": "decline_request_to_join"
-  //           },
-  //         ]
-  //       },
-  //       Divider()
-  //     ],
-  //     as_user: true
-  //   }
-
-  //   web.chat.postMessage(message);
-  // });
+  // Handles sending a message to the team owner requesting permission for the user to join
+  slackInteractions.viewSubmission({ callbackId: 'send_request_to_join' }, (payload) => handleSendRequestToJoin(web, payload, Team));
 
 }
