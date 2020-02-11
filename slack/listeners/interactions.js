@@ -20,7 +20,7 @@ module.exports = (slackInteractions, web) => {
   slackInteractions.action({ actionId: 'team_select' }, (payload) => handleSelectTeam(web, payload, Team));
 
   // Handles displaying a modal informing the user about requesting to join a team
-  slackInteractions.action({ actionId: 'request_to_join' }, (payload) => handleRequestToJoin(web, payload));
+  slackInteractions.action({ actionId: 'request_to_join' }, (payload) => handleRequestToJoin(web, payload, Team));
 
   // Handles removing the current user when they click "leave" from the team
   slackInteractions.action({ actionId: 'leave_team' }, (payload) => handleLeaveTeam(web, payload, Team));

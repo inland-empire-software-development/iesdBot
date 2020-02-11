@@ -1,4 +1,4 @@
-const RequestToJoinMessage = () => {
+const RequestToActions = () => {
   return {
     type: "actions",
     elements: [
@@ -24,4 +24,4 @@ const RequestToJoinMessage = () => {
   }
 }
 
-module.exports = RequestToJoinMessage;
+module.exports = RequestToActions;

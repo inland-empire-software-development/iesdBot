@@ -1,5 +1,8 @@
-const RequestToJoinMessage = require('../views/RequestToJoinMessage');
+const client = require('../../lib/redis');
+
+const RequestToJoinActions = require('../views/RequestToJoinActions');
 const Divider = require('../views/Divider');
+const SectionText = require('../views/SectionText');
 
 const handleSendRequestToJoin = async (web, payload, Team) => {
   const userTeam = await Team.findOne({ teamName: payload.view.private_metadata });
@@ -15,7 +18,8 @@ const handleSendRequestToJoin = async (web, payload, Team) => {
     channel: 'UERTLGB9C', // CHANGE THIS LATER ONCE IT'S READY
     blocks: [
       Divider(),
-      RequestToJoinMessage(),
+      SectionText(`*<@${payload.user.id}>* has requested to join *${userTeam.teamName}.*`),
+      RequestToJoinActions(),
       Divider()
     ],
     as_user: true
