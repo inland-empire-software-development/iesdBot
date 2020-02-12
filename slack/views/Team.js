@@ -17,7 +17,7 @@ const generateListOfTeamsWithButton = (teams) => {
 
     console.log(requestedMembers);
     if(requestedMembers.length > 0){
-      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, team.teamSetting, "Cancel Request", "team_select");
+      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, team.teamSetting, "Cancel Request", "cancel_request_to_join");
     }
 
     switch(team.teamSetting){

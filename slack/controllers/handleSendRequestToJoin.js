@@ -35,7 +35,7 @@ const handleSendRequestToJoin = async (web, payload, Team, PendingTeamRequest) =
     requestTimestamp: requestMessage.ts
   });
 
-
+  refreshTeamMessage(web, Team, payload);
 
 }
 
