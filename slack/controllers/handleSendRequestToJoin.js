@@ -4,7 +4,7 @@ const RequestToJoinActions = require('../views/RequestToJoinActions');
 const Divider = require('../views/Divider');
 const SectionText = require('../views/SectionText');
 
-const handleSendRequestToJoin = async (web, payload, Team) => {
+const handleSendRequestToJoin = async (web, payload, Team, PendingTeamRequest) => {
   const userTeam = await Team.findOne({ teamName: payload.view.private_metadata });
 
   // UERTLGB9C
@@ -19,13 +19,22 @@ const handleSendRequestToJoin = async (web, payload, Team) => {
     blocks: [
       Divider(),
       SectionText(`*<@${payload.user.id}>* has requested to join *${userTeam.teamName}.*`),
-      RequestToJoinActions(),
+      RequestToJoinActions(payload.user.id, userTeam.teamName),
       Divider()
     ],
     as_user: true
   }
 
-  web.chat.postMessage(message);
+  const requestMessage = await web.chat.postMessage(message);
+
+  PendingTeamRequest.create({
+    teamName: userTeam.teamName,
+    requestingUser: payload.user.id,
+    requestTimestamp: requestMessage.ts
+  });
+
+  // ADD MESSAGE INFO TO DB
+
 }
 
 module.exports = handleSendRequestToJoin;

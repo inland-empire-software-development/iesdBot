@@ -1,10 +1,12 @@
 const client = require('../../lib/redis');
 
+const PendingTeamRequest = require('../../models/PendingTeamRequest');
+
 const generateTeamBlock = require('./generateTeamBlock');
 
 const displayTeam = async (web, db, event) => {
 
-  const teamBlock = await generateTeamBlock(db, event.user);
+  const teamBlock = await generateTeamBlock(db, PendingTeamRequest, event.user);
   
   const message = {
     channel: event.user,

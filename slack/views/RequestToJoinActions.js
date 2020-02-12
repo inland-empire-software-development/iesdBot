@@ -1,4 +1,10 @@
-const RequestToActions = () => {
+const RequestToActions = (requestingUser, teamName) => {
+  const actionData = {
+    requestingUser,
+    teamName
+  }
+
+  const actionDataJSON = JSON.stringify(actionData);
   return {
     type: "actions",
     elements: [
@@ -9,7 +15,8 @@ const RequestToActions = () => {
           text: "Accept",
           emoji: true
         },
-        value: "accept_request_to_join"
+        value: actionDataJSON,
+        action_id: "accept_request_to_join"
       },
       {
         type: "button",
@@ -18,7 +25,8 @@ const RequestToActions = () => {
           text: "Decline",
           emoji: true
         },
-        value: "decline_request_to_join"
+        value: actionDataJSON,
+        action_id: "decline_request_to_join"
       },
     ]
   }

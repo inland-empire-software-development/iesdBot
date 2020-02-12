@@ -10,9 +10,7 @@ const handleEditTeamInfo = require('../controllers/handleEditTeamInfo');
 const handleDeleteTeam = require('../controllers/handleDeleteTeam');
 
 const Team = require('../../models/Team');
-
-//temp
-const Divider = require('../views/Divider');
+const PendingTeamRequest = require('../../models/PendingTeamRequest');
 
 module.exports = (slackInteractions, web) => {
 
@@ -37,6 +35,15 @@ module.exports = (slackInteractions, web) => {
   // Handles displaying the "team create" modal
   slackInteractions.action({ actionId: 'create_team' }, (payload) => displayTeamCreate(web, payload.trigger_id));
 
+  slackInteractions.action({ actionId: 'accept_request_to_join' }, (payload) => {
+    const db = PendingTeamRequest;
+
+    const actionData = JSON.parse(payload.actions[0].value);
+
+    const teamName = actionData.teamName;
+    const requestingUser = actionData.requestingUser;
+  });
+
   // Handles the user's submission of the "team create" modal
   slackInteractions.viewSubmission({ callbackId: 'submit_team' }, (payload) => handleCreateTeam(web, payload, Team));
 
@@ -44,6 +51,6 @@ module.exports = (slackInteractions, web) => {
   slackInteractions.viewSubmission({ callbackId: 'edit_team_info' }, (payload) => handleEditTeamInfo(web, payload, Team));
 
   // Handles sending a message to the team owner requesting permission for the user to join
-  slackInteractions.viewSubmission({ callbackId: 'send_request_to_join' }, (payload) => handleSendRequestToJoin(web, payload, Team));
+  slackInteractions.viewSubmission({ callbackId: 'send_request_to_join' }, (payload) => handleSendRequestToJoin(web, payload, Team, PendingTeamRequest));
 
 }

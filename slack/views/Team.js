@@ -7,8 +7,11 @@ const TeamManageButton = require('./TeamManageButton');
 const TeamInfo = require('./TeamInfo');
 const TeamInfoWithButton = require('./TeamInfoWithButton');
 
+const PendingTeamRequest = require('../../models/PendingTeamRequest');
+
 // Move this to its own file later????
-const generateListOfTeamsWithButton = (teams) => {
+const generateListOfTeamsWithButton = (teams, requestedTeams) => {
+  console.log(requestedTeams);
   const ListOfTeams = teams.map(team => {
     const { teamName, teamMembers } = team;
 
@@ -43,7 +46,7 @@ const generateListOfTeamsWithUserTeam = (teams, userTeam, teamOwner, isOwner) =>
   return ListOfTeams;
 }
 
-const Team = (teams, userTeam, teamOwner, isOwner) => {
+const Team = (teams, userTeam, teamOwner, isOwner, requestedTeams) => {
   let ListOfTeams = [];
   if(userTeam){
     ListOfTeams = generateListOfTeamsWithUserTeam(teams, userTeam, teamOwner, isOwner);
@@ -71,7 +74,7 @@ const Team = (teams, userTeam, teamOwner, isOwner) => {
     }
 
   } else {
-    ListOfTeams = generateListOfTeamsWithButton(teams);
+    ListOfTeams = generateListOfTeamsWithButton(teams, requestedTeams);
 
     return [
       TeamGreeting(),

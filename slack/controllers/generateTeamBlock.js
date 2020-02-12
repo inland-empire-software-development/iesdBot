@@ -1,7 +1,7 @@
 const axios = require('axios');
 let Team = require('../views/Team');
 
-const generateTeamBlock = async (db, userId) => {
+const generateTeamBlock = async (db, PendingTeamRequest, userId) => {
 
   let hackDayDate;
 
@@ -21,8 +21,9 @@ const generateTeamBlock = async (db, userId) => {
   // let teams = await db.find({ dateOfEvent: hackDayDate });
   const teams = await db.find();
   const userTeam = await db.find({ teamMembers: userId });
+  const requestedTeams = await PendingTeamRequest.find({ requestingUser: userId });
   let teamOwner;
-  let isOwner = false
+  let isOwner = false;
 
   // If db was able to find user's team, assign teamOwner and isOwner
   if(userTeam.length > 0){
@@ -30,7 +31,7 @@ const generateTeamBlock = async (db, userId) => {
     isOwner = teamOwner === userId;
   }
 
-  const teamBlock = await Team(teams, userTeam[0], teamOwner, isOwner);
+  const teamBlock = await Team(teams, userTeam[0], teamOwner, isOwner, requestedTeams);
   return teamBlock;
 }
 
