@@ -3,9 +3,6 @@ const axios = require('axios');
 // lib
 const client = require('../../lib/redis');
 
-// Database
-const PendingTeamRequest = require('../../models/PendingTeamRequest');
-
 // controllers
 const generateTeamBlock = require('./generateTeamBlock');
 
@@ -14,7 +11,7 @@ const refreshTeamMessage = async (web, db, payload) => {
   const multiMessageInfo = await client.getAllTimestamp('TeamInfoTS');
 
   multiMessageInfo.forEach(async (messageInfo) => {
-    const teamBlock = await generateTeamBlock(db, PendingTeamRequest, messageInfo.id);
+    const teamBlock = await generateTeamBlock(db, messageInfo.id);
 
     const message = {
       channel: messageInfo.channel,

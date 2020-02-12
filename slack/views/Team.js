@@ -10,10 +10,15 @@ const TeamInfoWithButton = require('./TeamInfoWithButton');
 const PendingTeamRequest = require('../../models/PendingTeamRequest');
 
 // Move this to its own file later????
-const generateListOfTeamsWithButton = (teams, requestedTeams) => {
-  console.log(requestedTeams);
+// COUNTER
+const generateListOfTeamsWithButton = (teams) => {
   const ListOfTeams = teams.map(team => {
-    const { teamName, teamMembers } = team;
+    const { teamName, teamMembers, requestedMembers } = team;
+
+    console.log(requestedMembers);
+    if(requestedMembers.length > 0){
+      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, team.teamSetting, "Cancel Request", "team_select");
+    }
 
     switch(team.teamSetting){
       case "Open":
@@ -46,7 +51,7 @@ const generateListOfTeamsWithUserTeam = (teams, userTeam, teamOwner, isOwner) =>
   return ListOfTeams;
 }
 
-const Team = (teams, userTeam, teamOwner, isOwner, requestedTeams) => {
+const Team = (teams, userTeam, teamOwner, isOwner) => {
   let ListOfTeams = [];
   if(userTeam){
     ListOfTeams = generateListOfTeamsWithUserTeam(teams, userTeam, teamOwner, isOwner);
@@ -74,7 +79,7 @@ const Team = (teams, userTeam, teamOwner, isOwner, requestedTeams) => {
     }
 
   } else {
-    ListOfTeams = generateListOfTeamsWithButton(teams, requestedTeams);
+    ListOfTeams = generateListOfTeamsWithButton(teams);
 
     return [
       TeamGreeting(),

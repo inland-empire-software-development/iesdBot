@@ -1,5 +1,7 @@
 const client = require('../../lib/redis');
 
+const refreshTeamMessage = require('../controllers/refreshTeamMessage');
+
 const RequestToJoinActions = require('../views/RequestToJoinActions');
 const Divider = require('../views/Divider');
 const SectionText = require('../views/SectionText');
@@ -33,7 +35,7 @@ const handleSendRequestToJoin = async (web, payload, Team, PendingTeamRequest) =
     requestTimestamp: requestMessage.ts
   });
 
-  // ADD MESSAGE INFO TO DB
+
 
 }
 
