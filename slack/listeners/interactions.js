@@ -2,10 +2,12 @@ const displayTeamCreate = require('../controllers/displayTeamCreate');
 const handleCreateTeam = require('../controllers/handleCreateTeam');
 const handleSelectTeam = require('../controllers/handleSelectTeam');
 const handleRequestToJoin = require('../controllers/handleRequestToJoin');
+const handleCancelRequestToJoin = require('../controllers/handleCancelRequestToJoin');
 const handleSendRequestToJoin = require('../controllers/handleSendRequestToJoin');
 const handleLeaveTeam = require('../controllers/handleLeaveTeam');
 const displayTeamManager = require('../controllers/displayTeamManager');
-const displayTeamManagerReadOnly = require('../controllers/displayTeamManagerReadOnly')
+const displayTeamManagerReadOnly = require('../controllers/displayTeamManagerReadOnly');
+const displayCancelRequestToJoin = require('../controllers/displayCancelRequestToJoin');
 const handleEditTeamInfo = require('../controllers/handleEditTeamInfo');
 const handleDeleteTeam = require('../controllers/handleDeleteTeam');
 
@@ -19,6 +21,9 @@ module.exports = (slackInteractions, web) => {
 
   // Handles displaying a modal informing the user about requesting to join a team
   slackInteractions.action({ actionId: 'request_to_join' }, (payload) => handleRequestToJoin(web, payload, Team));
+
+  // Handles displaying a modal informing the user about cancellation of request to join the selected team
+  slackInteractions.action({ actionId: 'display_cancel_request' }, (payload) => displayCancelRequestToJoin(web, payload, Team));
 
   // Handles removing the current user when they click "leave" from the team
   slackInteractions.action({ actionId: 'leave_team' }, (payload) => handleLeaveTeam(web, payload, Team));
@@ -52,5 +57,8 @@ module.exports = (slackInteractions, web) => {
 
   // Handles sending a message to the team owner requesting permission for the user to join
   slackInteractions.viewSubmission({ callbackId: 'send_request_to_join' }, (payload) => handleSendRequestToJoin(web, payload, Team, PendingTeamRequest));
+
+  // Handles cancellation of request to join selected team
+  slackInteractions.viewSubmission({ callbackId: 'cancel_request_to_join' }, (payload) => handleCancelRequestToJoin(web, payload, Team, PendingTeamRequest));
 
 }
