@@ -1,14 +1,33 @@
+const client = require('../../lib/redis');
+
+const Divider = require('../views/Divider');
+const SectionText = require('../views/SectionText');
+
 const refreshTeamMessage = require('./refreshTeamMessage');
 
 const handleCancelRequestToJoin = async (web, payload, Team, PendingTeamRequest) => {
-  await PendingTeamRequest.deleteOne({ requestingUser: payload.user.id, teamName: payload.view.private_metadata }, (err) => {
-    if(err) return console.log(err);
-    console.log('successfully cancelled request');
-  });
+  const teamRequest = await PendingTeamRequest.findOneAndDelete({ requestingUser: payload.user.id, teamName: payload.view.private_metadata });
+
+  console.log('Successfully cancelled request'); // Add winston log
 
   refreshTeamMessage(web, Team, payload);
 
-  // UPDATE REQUESTS IN DM
+  try {
+    web.chat.update({
+      channel: teamRequest.messageChannel,
+      ts: teamRequest.requestTimestamp,
+      as_user: true,
+      blocks: [
+        Divider(),
+        SectionText(`*<@${payload.user.id}>* has cancelled their request to join *${teamRequest.teamName}.*`),
+        Divider()
+      ]
+    });
+
+    // Add winston log (`*<@${payload.user.id}>* has cancelled their request to join *${teamRequest.teamName}.*`)
+  } catch (err){
+    console.log(err); // Add proper winston log
+  }
 }
 
 module.exports = handleCancelRequestToJoin;

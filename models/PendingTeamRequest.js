@@ -16,6 +16,9 @@ const pendingTeamRequestSchema = new Schema({
   },
   requestTimestamp: {
     type: 'String',
+  },
+  messageChannel: {
+    type: 'String'
   }
 });
 

@@ -32,7 +32,8 @@ const handleSendRequestToJoin = async (web, payload, Team, PendingTeamRequest) =
   PendingTeamRequest.create({
     teamName: userTeam.teamName,
     requestingUser: payload.user.id,
-    requestTimestamp: requestMessage.ts
+    requestTimestamp: requestMessage.ts,
+    messageChannel: requestMessage.channel
   });
 
   refreshTeamMessage(web, Team, payload);
