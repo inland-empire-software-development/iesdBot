@@ -15,8 +15,8 @@ const RequestToActions = (requestingUser, teamName) => {
           text: "Accept",
           emoji: true
         },
-        value: actionDataJSON,
-        action_id: "accept_request_to_join"
+        value: teamName,
+        action_id: "team_select"
       },
       {
         type: "button",

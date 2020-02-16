@@ -37,3 +37,11 @@ db.teams.insert({
   teamSetting: "Open",
   dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00")
 });
+
+db.teams.insert({
+  teamMembers: ["UR689N4TB", "UFL9S0KSP", "UFKLMUYG0", "UE5528SV6", "UGKFMBKLY"],
+  teamOwner: "ULVRLJZU5",
+  teamName: "test",
+  teamSetting: "Open",
+  dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00")
+});

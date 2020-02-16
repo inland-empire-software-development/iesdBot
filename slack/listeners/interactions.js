@@ -40,13 +40,14 @@ module.exports = (slackInteractions, web) => {
   // Handles displaying the "team create" modal
   slackInteractions.action({ actionId: 'create_team' }, (payload) => displayTeamCreate(web, payload.trigger_id));
 
-  slackInteractions.action({ actionId: 'accept_request_to_join' }, (payload) => {
-    const db = PendingTeamRequest;
+  slackInteractions.action({ actionId: 'decline_request_to_join' }, (payload) => {
+    // const db = PendingTeamRequest;
 
-    const actionData = JSON.parse(payload.actions[0].value);
+    // const actionData = JSON.parse(payload.actions[0].value);
 
-    const teamName = actionData.teamName;
-    const requestingUser = actionData.requestingUser;
+    // const teamName = actionData.teamName;
+    // const requestingUser = actionData.requestingUser;
+    console.log(payload);
   });
 
   // Handles the user's submission of the "team create" modal
