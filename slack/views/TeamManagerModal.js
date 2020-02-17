@@ -27,7 +27,8 @@ const TeamManagerModal = (teamName, initialUsers, groupSetting) => {
         "team_name", // Action ID
         teamName, // Initial value
         "What would you like to name your team?", // Placeholder Text
-        "Team Name" // Label Text
+        "Team Name", // Label Text
+        54 // Character limit for team name
       ),
       ModalMultiUsersSelect(
         "members", // Action ID
