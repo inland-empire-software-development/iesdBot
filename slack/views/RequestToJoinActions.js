@@ -1,10 +1,4 @@
-const RequestToActions = (requestingUser, teamName) => {
-  const actionData = {
-    requestingUser,
-    teamName
-  }
-
-  const actionDataJSON = JSON.stringify(actionData);
+const RequestToJoinActions = (teamName) => {
   return {
     type: "actions",
     elements: [
@@ -25,11 +19,11 @@ const RequestToActions = (requestingUser, teamName) => {
           text: "Decline",
           emoji: true
         },
-        value: actionDataJSON,
+        value: teamName,
         action_id: "decline_request_to_join"
       },
     ]
   }
 }
 
-module.exports = RequestToActions;
+module.exports = RequestToJoinActions;

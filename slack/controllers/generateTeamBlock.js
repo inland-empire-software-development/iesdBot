@@ -34,7 +34,7 @@ const generateTeamBlock = async (db, userId) => {
     isOwner = teamOwner === userId;
   }
 
-  const teamBlock = await Team(teams, userTeam[0], teamOwner, isOwner);
+  const teamBlock = await Team(teams, userTeam[0], isOwner);
   return teamBlock;
 }
 

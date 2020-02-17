@@ -21,7 +21,7 @@ const handleSendRequestToJoin = async (web, payload, Team, PendingTeamRequest) =
     blocks: [
       Divider(),
       SectionText(`*<@${payload.user.id}>* has requested to join *${userTeam.teamName}.*`),
-      RequestToJoinActions(payload.user.id, userTeam.teamName),
+      RequestToJoinActions(userTeam.teamName),
       Divider()
     ],
     as_user: true

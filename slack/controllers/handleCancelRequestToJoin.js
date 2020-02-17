@@ -1,5 +1,3 @@
-const client = require('../../lib/redis');
-
 const Divider = require('../views/Divider');
 const SectionText = require('../views/SectionText');
 

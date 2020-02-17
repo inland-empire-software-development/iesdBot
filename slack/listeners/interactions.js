@@ -4,6 +4,7 @@ const handleSelectTeam = require('../controllers/handleSelectTeam');
 const handleRequestToJoin = require('../controllers/handleRequestToJoin');
 const handleCancelRequestToJoin = require('../controllers/handleCancelRequestToJoin');
 const handleSendRequestToJoin = require('../controllers/handleSendRequestToJoin');
+const handleDeclineRequestToJoin = require('../controllers/handleDeclineRequestToJoin');
 const handleLeaveTeam = require('../controllers/handleLeaveTeam');
 const displayTeamManager = require('../controllers/displayTeamManager');
 const displayTeamManagerReadOnly = require('../controllers/displayTeamManagerReadOnly');
@@ -40,15 +41,7 @@ module.exports = (slackInteractions, web) => {
   // Handles displaying the "team create" modal
   slackInteractions.action({ actionId: 'create_team' }, (payload) => displayTeamCreate(web, payload.trigger_id));
 
-  slackInteractions.action({ actionId: 'decline_request_to_join' }, (payload) => {
-    // const db = PendingTeamRequest;
-
-    // const actionData = JSON.parse(payload.actions[0].value);
-
-    // const teamName = actionData.teamName;
-    // const requestingUser = actionData.requestingUser;
-    console.log(payload);
-  });
+  slackInteractions.action({ actionId: 'decline_request_to_join' }, (payload) => handleDeclineRequestToJoin(web, payload));
 
   // Handles the user's submission of the "team create" modal
   slackInteractions.viewSubmission({ callbackId: 'submit_team' }, (payload) => handleCreateTeam(web, payload, Team));
