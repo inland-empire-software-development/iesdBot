@@ -7,28 +7,52 @@ const TeamManageButton = require('./TeamManageButton');
 const TeamInfo = require('./TeamInfo');
 const TeamInfoWithButton = require('./TeamInfoWithButton');
 
+const PendingTeamRequest = require('../../models/PendingTeamRequest');
+
 // Move this to its own file later????
+// COUNTER
 const generateListOfTeamsWithButton = (teams) => {
   const ListOfTeams = teams.map(team => {
-    const { teamName, teamMembers } = team;
+    const { teamName, teamMembers, requestedMembers } = team;
 
-    return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Choose", "team_select");
+    if(requestedMembers.length > 0){
+      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, team.teamSetting, "Cancel Request", "display_cancel_request");
+    }
+
+    if(teamMembers.length >= 5){
+      return TeamInfo(teamName, teamMembers,teamMembers.length, 'Closed');
+    }
+
+    switch(team.teamSetting){
+      case "Open":
+        return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, team.teamSetting, "Choose", "team_select");
+      case "Invite":
+        return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, team.teamSetting, "Request To Join", "request_to_join");
+      default:
+        return TeamInfo(teamName, teamMembers, teamMembers.length, team.teamSetting);
+    }
   });
 
   return ListOfTeams;
 }
 
-const generateListOfTeamsWithUserTeam = (teams, userTeam, teamOwner, isOwner) => {
+const generateListOfTeamsWithUserTeam = (teams, userTeam, isOwner) => {
   const ListOfTeams = teams.map(team => {
     const { teamName, teamMembers } = team;
+    let { teamSetting } = team;
+    
+    if(teamMembers.length >= 5){
+      teamSetting = 'Closed';
+    }
+
     if(teamName !== userTeam.teamName){
-      return TeamInfo(teamName, teamMembers, teamMembers.length);
+      return TeamInfo(teamName, teamMembers, teamMembers.length, teamSetting);
     }
 
     if(isOwner){
-      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Manage", "manage_team");
+      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, teamSetting, "Manage", "manage_team");
     } else {
-      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, "Manage", "view_team");
+      return TeamInfoWithButton(teamName, teamMembers, teamMembers.length, teamSetting, "Manage", "view_team");
     }
 
   });
@@ -36,10 +60,10 @@ const generateListOfTeamsWithUserTeam = (teams, userTeam, teamOwner, isOwner) =>
   return ListOfTeams;
 }
 
-const Team = (teams, userTeam, teamOwner, isOwner) => {
+const Team = (teams, userTeam, isOwner) => {
   let ListOfTeams = [];
   if(userTeam){
-    ListOfTeams = generateListOfTeamsWithUserTeam(teams, userTeam, teamOwner, isOwner);
+    ListOfTeams = generateListOfTeamsWithUserTeam(teams, userTeam, isOwner);
 
     if(isOwner){
       return [

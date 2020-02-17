@@ -12,7 +12,7 @@ const displayTeam = async (web, db, event) => {
     as_user: true
   }
 
-  const oldMessageTS = await client.getTimestamp(event.user);
+  const oldMessageTS = await client.getTimestamp('TeamInfoTS', event.user);
 
   if(oldMessageTS){
     const oldMessage = {
@@ -25,7 +25,7 @@ const displayTeam = async (web, db, event) => {
 
   const postMessage = await web.chat.postMessage(message);
 
-  await client.setTimestamp(event.user, postMessage.ts, postMessage.channel);
+  await client.setTimestamp('TeamInfoTS', event.user, postMessage.ts, postMessage.channel);
 
   return postMessage;
 }

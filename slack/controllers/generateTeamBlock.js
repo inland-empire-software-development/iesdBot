@@ -19,10 +19,14 @@ const generateTeamBlock = async (db, userId) => {
    * COMMENTED OUT FOR TESTING PURPOSES
    */
   // let teams = await db.find({ dateOfEvent: hackDayDate });
-  const teams = await db.find();
+  const teams = await db.find().populate({ 
+    path: 'requestedMembers', 
+    match: { requestingUser: userId}
+  });
+
   const userTeam = await db.find({ teamMembers: userId });
   let teamOwner;
-  let isOwner = false
+  let isOwner = false;
 
   // If db was able to find user's team, assign teamOwner and isOwner
   if(userTeam.length > 0){
@@ -30,7 +34,7 @@ const generateTeamBlock = async (db, userId) => {
     isOwner = teamOwner === userId;
   }
 
-  const teamBlock = await Team(teams, userTeam[0], teamOwner, isOwner);
+  const teamBlock = await Team(teams, userTeam[0], isOwner);
   return teamBlock;
 }
 

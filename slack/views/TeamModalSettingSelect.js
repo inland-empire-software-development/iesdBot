@@ -10,16 +10,16 @@ const TeamModalSettingSelect = (initialOptionValue) => {
   }
 
   switch(initialOptionValue){
-    case "open":
+    case "Open":
       initialOption.text.text = "Open";
-      initialOption.value = "open"
+      initialOption.value = "Open"
       break;
-    case "invite":
+    case "Invite":
       initialOption.text.text = "Invite Only",
-      initialOption.value = "invite"
-    case "closed":
+      initialOption.value = "Invite"
+    case "Closed":
       initialOption.text.text = "Closed",
-      initialOption.value = "closed"
+      initialOption.value = "Closed"
   }
 
   return {
@@ -40,7 +40,7 @@ const TeamModalSettingSelect = (initialOptionValue) => {
             text: "Open",
             emoji: true
           },
-          value: "open"
+          value: "Open"
         },
         {
           text: {
@@ -48,7 +48,7 @@ const TeamModalSettingSelect = (initialOptionValue) => {
             text: "Invite Only",
             emoji: true
           },
-          value: "invite"
+          value: "Invite"
         },
         {
           text: {
@@ -56,7 +56,7 @@ const TeamModalSettingSelect = (initialOptionValue) => {
             text: "Closed",
             emoji: true
           },
-          value: "closed"
+          value: "Closed"
         }
       ]
     },

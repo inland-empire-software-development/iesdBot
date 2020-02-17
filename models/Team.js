@@ -31,6 +31,12 @@ const teamSchema = new Schema({
   dateOfEvent: {
     type: Date,
   }
+}, { toObject: { virtuals: true } });
+
+teamSchema.virtual('requestedMembers', {
+  ref: 'PendingTeamRequest',
+  localField: 'teamName',
+  foreignField: 'teamName'
 });
 
 function arrayLimit(val) {

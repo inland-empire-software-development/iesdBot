@@ -8,6 +8,8 @@ module.exports = (slackEvents, web) => {
 
     if(event.text.includes("team")) return displayTeam(web, Team, event);
 
+    console.log(event);
+
   });
 
 }
