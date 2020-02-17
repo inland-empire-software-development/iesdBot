@@ -26,7 +26,8 @@ const TeamCreateModal = () => {
         "team_name", // Action ID
         "", // Initial value
         "What would you like to name your team?", // Placeholder Text
-        "Team Name" // Label Text
+        "Team Name", // Label Text
+        54 // Character limit for team name
       ),
       ModalMultiUsersSelect(
         "members", // Action ID

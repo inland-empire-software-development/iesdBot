@@ -41,6 +41,7 @@ module.exports = (slackInteractions, web) => {
   // Handles displaying the "team create" modal
   slackInteractions.action({ actionId: 'create_team' }, (payload) => displayTeamCreate(web, payload.trigger_id));
 
+  // Handle declining request to join team
   slackInteractions.action({ actionId: 'decline_request_to_join' }, (payload) => handleDeclineRequestToJoin(web, payload));
 
   // Handles the user's submission of the "team create" modal
