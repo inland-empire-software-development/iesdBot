@@ -7,11 +7,19 @@ const TeamManageButton = require('./TeamManageButton');
 const TeamInfo = require('./TeamInfo');
 const TeamInfoWithButton = require('./TeamInfoWithButton');
 
-const PendingTeamRequest = require('../../models/PendingTeamRequest');
-
 // Move this to its own file later????
 // COUNTER
 const generateListOfTeamsWithButton = (teams) => {
+  if(teams.length <= 0){
+    return [{
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: `There are currently no available teams.`
+      }
+    }]
+  }
+
   const ListOfTeams = teams.map(team => {
     const { teamName, teamMembers, requestedMembers } = team;
 
