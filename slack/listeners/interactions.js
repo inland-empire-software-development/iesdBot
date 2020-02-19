@@ -61,16 +61,15 @@ module.exports = (slackInteractions, web) => {
   slackInteractions.viewSubmission({ callbackId: 'cancel_request_to_join' }, (payload) => handleCancelRequestToJoin(web, payload, Team, PendingTeamRequest));
 
   slackInteractions.viewSubmission({ callbackId: 'return_to_team_modal' }, (payload) => {
-    console.log(payload);
     const inputData = JSON.parse(payload.view.private_metadata);
-    const { teamName, teamMembers } = inputData;
-    console.log(teamMembers);
-    console.log(inputData);
-    console.log('test');
-    // How to grab previous data?
+    const { teamName, teamMembers, teamSetting } = inputData;
+
+    // Remove owner from list of members
+    teamMembers.shift();
+
     return {
       response_action: "update",
-      view: TeamCreateModal(teamName, teamMembers)
+      view: TeamCreateModal(teamName, teamMembers, teamSetting)
     }
   });
 

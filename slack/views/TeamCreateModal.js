@@ -2,8 +2,10 @@ const TeamModalSettingSelect = require('./TeamModalSettingSelect');
 const ModalMultiUsersSelect = require('./ModalMultiUsersSelect');
 const ModalPlainTextInput = require('./ModalPlainTextInput');
 
-const TeamCreateModal = (initialTeamName, initialMembers) => {
-  console.log("USERS", initialMembers);
+const TeamCreateModal = (initialTeamName, initialMembers, initialSetting) => {
+  // If no initialSetting provided, default to "Open"
+  const teamSetting = initialSetting ? initialSetting : "Open";
+
   return {
     title: {
       type: "plain_text",
@@ -37,7 +39,7 @@ const TeamCreateModal = (initialTeamName, initialMembers) => {
         "Who else will be working with you?", // Placeholder Text
         "Members" // Label Text
       ),
-      TeamModalSettingSelect("Open")
+      TeamModalSettingSelect(teamSetting)
     ]
   }
 }
