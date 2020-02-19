@@ -6,16 +6,14 @@ const refreshTeamMessage = require('./refreshTeamMessage');
 const createTeam = require('./createTeam');
 
 // Views
-const SectionText = require('../views/SectionText');
+const ModalMessage = require('../views/ModalMessage');
 
 const handleCreateTeam = async (web, payload, db) => {
   const values = payload.view.state.values;
 
   let teamName;
-  const teamOwner = payload.user.id;
   let teamMembers;
   let teamSetting;
-  let hackDayDate;
 
   for(let value in values){
     if(values[value].hasOwnProperty('team_name')){
@@ -28,34 +26,33 @@ const handleCreateTeam = async (web, payload, db) => {
     }
   }
 
-  const inputData = { teamName, teamOwner, teamMembers, teamSetting };
+  const inputData = { teamName, teamMembers, teamSetting };
   const inputDataJSON = JSON.stringify(inputData);
   
-  const checkTeamName = await Team.find({ teamName });
-  if(checkTeamName.length > 0){
+  const checkTeamName = await Team.findOne({ teamName });
+  const checkTeamMembers = [];
+
+  for(let i = 0; i < teamMembers.length; i++){
+    const member = teamMembers[i];
+    const memberTeam = await Team.findOne({ teamMembers: member });
+    if(memberTeam){
+      checkTeamMembers.push(`<@${member}>`);
+    }
+  }
+
+  if(checkTeamName){
     return {
       response_action: "update",
-      view: {
-        type: "modal",
-        title: {
-          type: "plain_text",
-          text: "Error"
-        },
-        submit: {
-          type: "plain_text",
-          text: "Back",
-          emoji: true
-        },
-        callback_id: "return_to_team_modal",
-        private_metadata: inputDataJSON,
-        blocks: [
-          SectionText('Team name is already taken')
-        ]
-      }
+      view: ModalMessage("Error", "Team name is already taken", "Back", "return_to_team_modal", inputDataJSON)
     }
-  } 
+  } else if(checkTeamMembers.length > 0){
+    return {
+      response_action: "update",
+      view: ModalMessage("Error", `The following users are already in a team: \n ${checkTeamMembers}`, "Back", "return_to_team_modal", inputDataJSON)
+    }
+  }
 
-  await createTeam(payload, db);
+  await createTeam(teamName, teamMembers, teamSetting, payload);
 
   refreshTeamMessage(web, db, payload);
 
