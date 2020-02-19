@@ -3,21 +3,15 @@ const Divider = require('./Divider');
 const TeamEventInfo = require('./TeamEventInfo');
 const TeamCreateButton = require('./TeamCreateButton');
 const TeamManageButton = require('./TeamManageButton');
+const SectionText = require('./SectionText');
 
 const TeamInfo = require('./TeamInfo');
 const TeamInfoWithButton = require('./TeamInfoWithButton');
 
 // Move this to its own file later????
-// COUNTER
 const generateListOfTeamsWithButton = (teams) => {
   if(teams.length <= 0){
-    return [{
-      type: "section",
-      text: {
-        type: "mrkdwn",
-        text: `There are currently no available teams.`
-      }
-    }]
+    return [SectionText(`There are no available teams at this time.`)]
   }
 
   const ListOfTeams = teams.map(team => {

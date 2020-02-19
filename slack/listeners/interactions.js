@@ -15,6 +15,10 @@ const handleDeleteTeam = require('../controllers/handleDeleteTeam');
 const Team = require('../../models/Team');
 const PendingTeamRequest = require('../../models/PendingTeamRequest');
 
+// TEMP
+const SectionText = require('../views/SectionText');
+const TeamCreateModal = require('../views/TeamCreateModal');
+
 module.exports = (slackInteractions, web) => {
 
   // Handles adding the current user when they click "choose" to the team
@@ -55,5 +59,19 @@ module.exports = (slackInteractions, web) => {
 
   // Handles cancellation of request to join selected team
   slackInteractions.viewSubmission({ callbackId: 'cancel_request_to_join' }, (payload) => handleCancelRequestToJoin(web, payload, Team, PendingTeamRequest));
+
+  slackInteractions.viewSubmission({ callbackId: 'return_to_team_modal' }, (payload) => {
+    console.log(payload);
+    const inputData = JSON.parse(payload.view.private_metadata);
+    const { teamName, teamMembers } = inputData;
+    console.log(teamMembers);
+    console.log(inputData);
+    console.log('test');
+    // How to grab previous data?
+    return {
+      response_action: "update",
+      view: TeamCreateModal(teamName, teamMembers)
+    }
+  });
 
 }
