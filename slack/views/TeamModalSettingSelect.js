@@ -17,9 +17,11 @@ const TeamModalSettingSelect = (initialOptionValue) => {
     case "Invite":
       initialOption.text.text = "Invite Only",
       initialOption.value = "Invite"
+      break;
     case "Closed":
       initialOption.text.text = "Closed",
       initialOption.value = "Closed"
+      break;
   }
 
   return {
