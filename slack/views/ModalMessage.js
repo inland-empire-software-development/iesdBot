@@ -1,3 +1,5 @@
+const SectionText = require('./SectionText');
+
 const ModalMessage = (title, message, submitBtn, callback_id, private_metadata) => {
   return {
     title: {
@@ -19,13 +21,7 @@ const ModalMessage = (title, message, submitBtn, callback_id, private_metadata) 
     private_metadata,
     callback_id,
     blocks: [
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: message
-        }
-      }
+      SectionText(message)
     ]
   }
 }

@@ -3,7 +3,7 @@ const TeamEventInfo = () => {
     type: "section",
     text: {
       type: "mrkdwn",
-      text: "*<https://www.meetup.com/iesd-meetup/events/264486598/| Hack Day September 2019>*\nSaturday, September 28 2:30-7:00pm\nExCite Riverside\n32 members have RSVP\n\n\n *Here are the current teams:*"
+      text: "*<https://www.meetup.com/iesd-meetup/events/264486598/| Hack Day September 2019>*\nSaturday, September 28 2:30-7:00pm\nExCite Riverside\n32 members have RSVP\n\n\n *Current teams:*"
     },
     accessory: {
       type: "image",

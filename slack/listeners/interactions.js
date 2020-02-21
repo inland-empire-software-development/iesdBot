@@ -11,6 +11,7 @@ const displayTeamManagerReadOnly = require('../controllers/displayTeamManagerRea
 const displayCancelRequestToJoin = require('../controllers/displayCancelRequestToJoin');
 const handleEditTeamInfo = require('../controllers/handleEditTeamInfo');
 const handleDeleteTeam = require('../controllers/handleDeleteTeam');
+const handleReturnToTeamModal = require('../controllers/handleReturnToTeamModal');
 
 const Team = require('../../models/Team');
 const PendingTeamRequest = require('../../models/PendingTeamRequest');
@@ -45,7 +46,7 @@ module.exports = (slackInteractions, web) => {
   slackInteractions.action({ actionId: 'decline_request_to_join' }, (payload) => handleDeclineRequestToJoin(web, payload));
 
   // Handles the user's submission of the "team create" modal
-  slackInteractions.viewSubmission({ callbackId: 'submit_team' }, (payload) => handleCreateTeam(web, payload, Team));
+  slackInteractions.viewSubmission({ callbackId: 'submit_team' }, (payload) => handleCreateTeam(web, payload));
 
   // Handles the user's submission of the "edit team info" modal
   slackInteractions.viewSubmission({ callbackId: 'edit_team_info' }, (payload) => handleEditTeamInfo(web, payload, Team));
@@ -55,5 +56,7 @@ module.exports = (slackInteractions, web) => {
 
   // Handles cancellation of request to join selected team
   slackInteractions.viewSubmission({ callbackId: 'cancel_request_to_join' }, (payload) => handleCancelRequestToJoin(web, payload, Team, PendingTeamRequest));
+
+  slackInteractions.viewSubmission({ callbackId: 'return_to_team_modal' }, (payload) => handleReturnToTeamModal(payload));
 
 }

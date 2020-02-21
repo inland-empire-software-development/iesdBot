@@ -1,24 +1,10 @@
 const axios = require('axios');
+const Team = require('../../models/Team');
 
-const createTeam = async (payload, db) => {
-  const values = payload.view.state.values;
-
-  let teamName;
+// const createTeam = async (payload, db) => {
+const createTeam = async (teamName, teamMembers, teamSetting, payload) => {
   const teamOwner = payload.user.id;
-  let teamMembers;
-  let teamSetting;
   let hackDayDate;
-
-  for(let value in values){
-    if(values[value].hasOwnProperty('team_name')){
-      teamName = values[value].team_name.value;
-    } else if(values[value].hasOwnProperty('members')){
-      teamMembers = values[value].members.selected_users;
-      teamMembers.unshift(payload.user.id);
-    } else {
-      teamSetting = values[value].group_settings.selected_option.value;
-    }
-  }
 
   await axios.get('https://api.meetup.com/iesd-meetup/events?&sign=true&photo-host=public')
   .then(response => {
@@ -42,7 +28,7 @@ const createTeam = async (payload, db) => {
       // }
       hackDayDate = new Date();
 
-      return db.create({
+      return Team.create({
         teamName,
         teamOwner,
         teamMembers,
