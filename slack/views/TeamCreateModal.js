@@ -1,6 +1,7 @@
 const TeamModalSettingSelect = require('./TeamModalSettingSelect');
 const ModalMultiUsersSelect = require('./ModalMultiUsersSelect');
 const ModalPlainTextInput = require('./ModalPlainTextInput');
+const SectionText = require('./SectionText');
 
 const TeamCreateModal = (initialTeamName, initialMembers, initialSetting) => {
   // If no initialSetting provided, default to "Open"
