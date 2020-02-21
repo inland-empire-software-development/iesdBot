@@ -11,7 +11,7 @@ const isTeamInfoUnique = require('./isTeamInfoUnique');
 const ModalMessage = require('../views/ModalMessage');
 
 const handleCreateTeam = async (web, payload) => {
-  let { teamName, teamMembers, teamSetting } = extractTeamFromPayloadState(payload);
+  const { teamName, teamMembers, teamSetting } = extractTeamFromPayloadState(payload);
   const { isTeamNameUnique, isMembersUnique, membersInTeams } = await isTeamInfoUnique(teamName, teamMembers);
 
   const inputData = { teamName, teamMembers, teamSetting };
