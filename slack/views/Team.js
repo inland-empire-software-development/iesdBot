@@ -74,8 +74,6 @@ const Team = (teams, userTeam, isOwner) => {
         TeamEventInfo(),
         Divider(),
         ...ListOfTeams,
-        Divider(),
-        TeamManageButton('manage_team')
       ]
     } else {
       return [
@@ -84,8 +82,6 @@ const Team = (teams, userTeam, isOwner) => {
         TeamEventInfo(),
         Divider(),
         ...ListOfTeams,
-        Divider(),
-        TeamManageButton('view_team')
       ]
     }
 
@@ -99,7 +95,7 @@ const Team = (teams, userTeam, isOwner) => {
       Divider(),
       ...ListOfTeams,
       Divider(),
-      TeamCreateButton()
+      TeamCreateButton(),
     ]
   }
 }
