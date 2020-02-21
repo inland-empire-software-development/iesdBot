@@ -11,10 +11,12 @@ const isTeamInfoUnique = require('./isTeamInfoUnique');
 const ModalMessage = require('../views/ModalMessage');
 
 const handleCreateTeam = async (web, payload) => {
+  const actionSource = "submit_team";
+
   const { teamName, teamMembers, teamSetting } = extractTeamFromPayloadState(payload);
   const { isTeamNameUnique, isMembersUnique, membersInTeams } = await isTeamInfoUnique(teamName, teamMembers);
 
-  const inputData = { teamName, teamMembers, teamSetting };
+  const inputData = { teamName, teamMembers, teamSetting, actionSource };
   const inputDataJSON = JSON.stringify(inputData);
 
   if(!isTeamNameUnique){

@@ -11,13 +11,10 @@ const displayTeamManagerReadOnly = require('../controllers/displayTeamManagerRea
 const displayCancelRequestToJoin = require('../controllers/displayCancelRequestToJoin');
 const handleEditTeamInfo = require('../controllers/handleEditTeamInfo');
 const handleDeleteTeam = require('../controllers/handleDeleteTeam');
+const handleReturnToTeamModal = require('../controllers/handleReturnToTeamModal');
 
 const Team = require('../../models/Team');
 const PendingTeamRequest = require('../../models/PendingTeamRequest');
-
-// TEMP
-const SectionText = require('../views/SectionText');
-const TeamCreateModal = require('../views/TeamCreateModal');
 
 module.exports = (slackInteractions, web) => {
 
@@ -60,17 +57,6 @@ module.exports = (slackInteractions, web) => {
   // Handles cancellation of request to join selected team
   slackInteractions.viewSubmission({ callbackId: 'cancel_request_to_join' }, (payload) => handleCancelRequestToJoin(web, payload, Team, PendingTeamRequest));
 
-  slackInteractions.viewSubmission({ callbackId: 'return_to_team_modal' }, (payload) => {
-    const inputData = JSON.parse(payload.view.private_metadata);
-    const { teamName, teamMembers, teamSetting } = inputData;
-
-    // Remove owner from list of members
-    teamMembers.shift();
-
-    return {
-      response_action: "update",
-      view: TeamCreateModal(teamName, teamMembers, teamSetting)
-    }
-  });
+  slackInteractions.viewSubmission({ callbackId: 'return_to_team_modal' }, (payload) => handleReturnToTeamModal(payload));
 
 }

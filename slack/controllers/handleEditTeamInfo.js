@@ -11,6 +11,8 @@ const isTeamInfoUnique = require('./isTeamInfoUnique');
 const ModalMessage = require('../views/ModalMessage');
 
 const handleEditTeamInfo = async (web, payload) => {
+  const actionSource = "edit_team_info";
+
   const currentTeamInfo = await Team.findOne({ teamMembers: payload.user.id });
   
   const { teamName, teamMembers, teamSetting } = extractTeamFromPayloadState(payload);
@@ -19,7 +21,7 @@ const handleEditTeamInfo = async (web, payload) => {
 
   const { isTeamNameUnique, isMembersUnique, membersInTeams } = await isTeamInfoUnique(teamName, newTeamMembers);
 
-  const inputData = { teamName, teamMembers, teamSetting };
+  const inputData = { teamName, teamMembers, teamSetting, actionSource };
   const inputDataJSON = JSON.stringify(inputData);
 
   if(currentTeamInfo.teamName !== teamName && !isTeamNameUnique){
