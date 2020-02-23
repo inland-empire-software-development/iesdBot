@@ -17,7 +17,6 @@ const Team = require('../../models/Team');
 const PendingTeamRequest = require('../../models/PendingTeamRequest');
 
 module.exports = (slackInteractions, web) => {
-
   // Handles adding the current user when they click "choose" to the team
   slackInteractions.action({ actionId: 'team_select' }, (payload) => handleSelectTeam(web, payload, Team));
 
@@ -40,7 +39,7 @@ module.exports = (slackInteractions, web) => {
   slackInteractions.action({ actionId: 'view_team' }, (payload) => displayTeamManagerReadOnly(web, payload, Team));
 
   // Handles displaying the "team create" modal
-  slackInteractions.action({ actionId: 'create_team' }, (payload) => displayTeamCreate(web, payload.trigger_id));
+  slackInteractions.action({ actionId: 'create_team' }, (payload) => displayTeamCreate(web, payload));
 
   // Handle declining request to join team
   slackInteractions.action({ actionId: 'decline_request_to_join' }, (payload) => handleDeclineRequestToJoin(web, payload));
@@ -57,6 +56,7 @@ module.exports = (slackInteractions, web) => {
   // Handles cancellation of request to join selected team
   slackInteractions.viewSubmission({ callbackId: 'cancel_request_to_join' }, (payload) => handleCancelRequestToJoin(web, payload, Team, PendingTeamRequest));
 
+  // Handles taking the user back to the previous modal
   slackInteractions.viewSubmission({ callbackId: 'return_to_team_modal' }, (payload) => handleReturnToTeamModal(payload));
 
 }

@@ -9,7 +9,7 @@ const ModalMultiUsersSelect = (actionId, initialUsers, placeHolderText, labelTex
         type: "plain_text",
         text: placeHolderText
       },
-      max_selected_items: 4
+      max_selected_items: 5
     },
     label: {
       type: "plain_text",

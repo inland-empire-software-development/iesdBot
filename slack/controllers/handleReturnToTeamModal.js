@@ -6,9 +6,6 @@ const handleReturnToTeamModal = (payload) => {
   const inputData = JSON.parse(payload.view.private_metadata);
   const { teamName, teamMembers, teamSetting, actionSource } = inputData;
 
-  // Remove owner from list of members
-  teamMembers.shift();
-
   switch(actionSource){
     case 'submit_team':
       return {
