@@ -29,6 +29,12 @@ const handleCreateTeam = async (web, payload) => {
       response_action: "update",
       view: ModalMessage("Error", `The following users are already in a team: \n ${membersInTeams}`, "Back", "return_to_team_modal", inputDataJSON)
     }
+  } else if(!teamMembers.includes(payload.user.id)){
+    console.log('test');
+    return {
+      response_action: "update",
+      view: ModalMessage("Error", `You need to include yourself in the list of team members.`, "Back", "return_to_team_modal", inputDataJSON)
+    }
   }
 
   await createTeam(teamName, teamMembers, teamSetting, payload);

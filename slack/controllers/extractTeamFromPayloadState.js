@@ -13,14 +13,6 @@ const extractTeamFromPayloadState = (payload) => {
     }
   }
 
-  // Removes owner from list of members incase user added themselves to the list. 
-  // Prevents duplicate owners.
-  teamMembers = teamMembers.filter(member => member !== payload.user.id);
-
-  // After filter add owner back into list
-  teamMembers.unshift(payload.user.id); 
-
-
   return {
     teamName,
     teamMembers,
