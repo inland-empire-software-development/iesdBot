@@ -20,10 +20,6 @@ const slackInteractions = createMessageAdapter(process.env.SLACK_SIGNING_SECRET)
 
 const web = new WebClient(process.env.BOTS_TOKEN);
 
-// TEMP
-const Team = require('./models/Team');
-const displayTeam = require('./slack/controllers/displayTeam');
-
 // Middlewares
 app.use(helmet());
 app.use(morgan('combined', { stream: winston.stream }));

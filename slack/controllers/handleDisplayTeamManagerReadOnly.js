@@ -1,10 +1,6 @@
-const client = require('../../lib/redis');
-
-const TeamManagerModal = require('../views/TeamManagerModal');
-
 const TeamManagerModalReadOnly = require('../views/TeamManagerModalReadOnly');
 
-const displayTeamManagerReadOnly = async (web, payload, db) => {
+const handleDisplayTeamManagerReadOnly = async (web, payload, db) => {
 
   const userTeam = await db.findOne({ teamMembers: payload.user.id });
 
@@ -18,4 +14,4 @@ const displayTeamManagerReadOnly = async (web, payload, db) => {
   return web.views.open(modal);
 }
 
-module.exports = displayTeamManagerReadOnly;
+module.exports = handleDisplayTeamManagerReadOnly;

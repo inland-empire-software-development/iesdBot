@@ -1,6 +1,6 @@
 const TeamCreateModal = require('../views/TeamCreateModal');
 
-const displayTeamCreate = (web, payload) => {
+const handleDisplayTeamCreate = (web, payload) => {
   const modal = {
     trigger_id: payload.trigger_id,
     view: TeamCreateModal("", [payload.user.id], "Open")
@@ -9,4 +9,4 @@ const displayTeamCreate = (web, payload) => {
   return web.views.open(modal);
 }
 
-module.exports = displayTeamCreate;
+module.exports = handleDisplayTeamCreate;

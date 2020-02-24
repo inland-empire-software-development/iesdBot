@@ -1,4 +1,4 @@
-const displayTeamCreate = require('../controllers/displayTeamCreate');
+const handleDisplayTeamCreate = require('../controllers/handleDisplayTeamCreate');
 const handleCreateTeam = require('../controllers/handleCreateTeam');
 const handleSelectTeam = require('../controllers/handleSelectTeam');
 const handleRequestToJoin = require('../controllers/handleRequestToJoin');
@@ -6,9 +6,9 @@ const handleCancelRequestToJoin = require('../controllers/handleCancelRequestToJ
 const handleSendRequestToJoin = require('../controllers/handleSendRequestToJoin');
 const handleDeclineRequestToJoin = require('../controllers/handleDeclineRequestToJoin');
 const handleLeaveTeam = require('../controllers/handleLeaveTeam');
-const displayTeamManager = require('../controllers/displayTeamManager');
-const displayTeamManagerReadOnly = require('../controllers/displayTeamManagerReadOnly');
-const displayCancelRequestToJoin = require('../controllers/displayCancelRequestToJoin');
+const handleDisplayTeamManager = require('../controllers/handleDisplayTeamManager');
+const handleDisplayTeamManagerReadOnly = require('../controllers/handleDisplayTeamManagerReadOnly');
+const handleDisplayCancelRequestToJoin = require('../controllers/handleDisplayCancelRequestToJoin');
 const handleEditTeamInfo = require('../controllers/handleEditTeamInfo');
 const handleDeleteTeam = require('../controllers/handleDeleteTeam');
 const handleReturnToTeamModal = require('../controllers/handleReturnToTeamModal');
@@ -24,7 +24,7 @@ module.exports = (slackInteractions, web) => {
   slackInteractions.action({ actionId: 'request_to_join' }, (payload) => handleRequestToJoin(web, payload, Team));
 
   // Handles displaying a modal informing the user about cancellation of request to join the selected team
-  slackInteractions.action({ actionId: 'display_cancel_request' }, (payload) => displayCancelRequestToJoin(web, payload, Team));
+  slackInteractions.action({ actionId: 'display_cancel_request' }, (payload) => handleDisplayCancelRequestToJoin(web, payload, Team));
 
   // Handles removing the current user when they click "leave" from the team
   slackInteractions.action({ actionId: 'leave_team' }, (payload) => handleLeaveTeam(web, payload, Team));
@@ -33,13 +33,13 @@ module.exports = (slackInteractions, web) => {
   slackInteractions.action({ actionId: 'delete_team' } , (payload) => handleDeleteTeam(web, payload, Team));
 
   // Handles opening the modal for managing the user's team
-  slackInteractions.action({ actionId: 'manage_team' }, (payload) => displayTeamManager(web, payload, Team));
+  slackInteractions.action({ actionId: 'manage_team' }, (payload) => handleDisplayTeamManager(web, payload, Team));
 
   // Handles opening the modal for viewing the team's information
-  slackInteractions.action({ actionId: 'view_team' }, (payload) => displayTeamManagerReadOnly(web, payload, Team));
+  slackInteractions.action({ actionId: 'view_team' }, (payload) => handleDisplayTeamManagerReadOnly(web, payload, Team));
 
   // Handles displaying the "team create" modal
-  slackInteractions.action({ actionId: 'create_team' }, (payload) => displayTeamCreate(web, payload));
+  slackInteractions.action({ actionId: 'create_team' }, (payload) => handleDisplayTeamCreate(web, payload));
 
   // Handle declining request to join team
   slackInteractions.action({ actionId: 'decline_request_to_join' }, (payload) => handleDeclineRequestToJoin(web, payload));
