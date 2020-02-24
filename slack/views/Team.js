@@ -62,24 +62,34 @@ const generateListOfTeamsWithUserTeam = (teams, userTeam, isOwner) => {
   return ListOfTeams;
 }
 
-const Team = (teams, userTeam, isOwner) => {
+const Team = (teams, userTeam, isOwner, eventInfo) => {
+  const { 
+    eventLink, 
+    eventName, 
+    eventDate, 
+    eventStartTime,
+    eventEndTime, 
+    eventLocation, 
+    eventRSVPCount 
+  } = eventInfo;
+  
   let ListOfTeams = [];
   if(userTeam){
     ListOfTeams = generateListOfTeamsWithUserTeam(teams, userTeam, isOwner);
 
     if(isOwner){
       return [
-        TeamGreeting(),
+        TeamGreeting(eventName),
         Divider(),
-        TeamEventInfo(),
+        TeamEventInfo(eventLink, eventName, eventDate, eventStartTime, eventEndTime, eventLocation, eventRSVPCount),
         Divider(),
         ...ListOfTeams,
       ]
     } else {
       return [
-        TeamGreeting(),
+        TeamGreeting(eventName),
         Divider(),
-        TeamEventInfo(),
+        TeamEventInfo(eventLink, eventName, eventDate, eventStartTime, eventEndTime, eventLocation, eventRSVPCount),
         Divider(),
         ...ListOfTeams,
       ]
@@ -89,9 +99,9 @@ const Team = (teams, userTeam, isOwner) => {
     ListOfTeams = generateListOfTeamsWithButton(teams);
 
     return [
-      TeamGreeting(),
+      TeamGreeting(eventName),
       Divider(),
-      TeamEventInfo(),
+      TeamEventInfo(eventLink, eventName, eventDate, eventStartTime, eventEndTime, eventLocation, eventRSVPCount),
       Divider(),
       ...ListOfTeams,
       Divider(),
