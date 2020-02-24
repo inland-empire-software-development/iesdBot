@@ -6,40 +6,32 @@ const createTeam = async (teamName, teamMembers, teamSetting, payload) => {
   const teamOwner = payload.user.id;
   let hackDayDate;
 
-  await axios.get('https://api.meetup.com/iesd-meetup/events?&sign=true&photo-host=public')
-  .then(response => {
-    const events = response.data;
-    
-    for(const event of events){
-      /**
-       * ADD THIS LINE BACK IN ONCE HACK DAY RETURNS
-       * AND MAYBE ADD AN ELSE TO HANDLE WHEN PEOPLE 
-       * TRY TO CREATE TEAMS WITHOUT A FUTURE HACK DAY
-       */
-      // if(event.name.includes('Hack Day')){
-      //   hackDayDate = event.local_date;
+  const meetupRequest = await axios.get('https://api.meetup.com/iesd-meetup/events?&sign=true&photo-host=public');
+  const events = meetupRequest.data;
+  const listOfHackdays = [];
 
-      //   return db.create({
-      //     teamName,
-      //     teamMembers,
-      //     teamSetting,
-      //     dateOfEvent: hackDayDate
-      //   });
-      // }
-      hackDayDate = new Date();
-
-      return Team.create({
-        teamName,
-        teamOwner,
-        teamMembers,
-        teamSetting,
-        dateOfEvent: hackDayDate
-      });
+  for(const event of events){
+    /**
+     * Currently working on a new solution
+     * since the logic for this is flawed
+     */
+    if(event.name.includes('Hack Day')){
+      listOfHackdays.push(event.local_date);
     }
-  })
-  .catch(err => {
-    // Add error handling later
-    console.log(err);
+  }
+
+  if(listOfHackdays.length > 0){
+    hackDayDate = listOfHackdays[0];
+  } else {
+    hackDayDate = new Date();
+  }
+
+  return Team.create({
+    teamName,
+    teamOwner,
+    teamMembers,
+    teamSetting,
+    dateOfEvent: hackDayDate
   });
 
 }

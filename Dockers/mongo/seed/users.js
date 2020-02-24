@@ -3,7 +3,9 @@ db.teams.insert({
   teamOwner: "UJ406Q69M",
   teamName: "testtest",
   teamSetting: "Invite",
-  dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00")
+  dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00"),
+  created_at: new Date("2019-10-30T14:51:14.626+00:00"),
+  updatedAt: new Date("2019-10-30T14:51:14.626+00:00")
 });
 
 db.teams.insert({
@@ -11,7 +13,9 @@ db.teams.insert({
   teamOwner: "UE5KN6L2Y",
   teamName: "WeLikeFortnite",
   teamSetting: "Open",
-  dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00")
+  dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00"),
+  created_at: new Date("2019-10-30T14:51:14.626+00:00"),
+  updatedAt: new Date("2019-10-30T14:51:14.626+00:00")
 });
 
 db.teams.insert({
@@ -19,7 +23,9 @@ db.teams.insert({
   teamOwner: "UE7830F0W",
   teamName: "zzzzzzz",
   teamSetting: "Open",
-  dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00")
+  dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00"),
+  created_at: new Date("2019-10-30T14:51:14.626+00:00"),
+  updatedAt: new Date("2019-10-30T14:51:14.626+00:00")
 });
 
 db.teams.insert({
@@ -27,7 +33,9 @@ db.teams.insert({
   teamOwner: "UK243NWCS",
   teamName: "cool",
   teamSetting: "Open",
-  dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00")
+  dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00"),
+  created_at: new Date("2019-10-30T14:51:14.626+00:00"),
+  updatedAt: new Date("2019-10-30T14:51:14.626+00:00")
 });
 
 db.teams.insert({
@@ -35,7 +43,9 @@ db.teams.insert({
   teamOwner: "ULVRLJZU5",
   teamName: "bob",
   teamSetting: "Open",
-  dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00")
+  dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00"),
+  created_at: new Date("2019-10-30T14:51:14.626+00:00"),
+  updatedAt: new Date("2019-10-30T14:51:14.626+00:00")
 });
 
 db.teams.insert({
@@ -43,5 +53,7 @@ db.teams.insert({
   teamOwner: "ULVRLJZU5",
   teamName: "test",
   teamSetting: "Open",
-  dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00")
+  dateOfEvent: new Date("2019-10-30T14:51:14.626+00:00"),
+  created_at: new Date("2019-10-30T14:51:14.626+00:00"),
+  updatedAt: new Date("2019-10-30T14:51:14.626+00:00")
 });
