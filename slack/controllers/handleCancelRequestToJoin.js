@@ -1,9 +1,15 @@
+// Database
+const Team = require('../../models/Team');
+const PendingTeamRequest = require('../../models/PendingTeamRequest');
+
+// Controllers
+const refreshTeamMessage = require('./refreshTeamMessage');
+
+// Views
 const Divider = require('../views/Divider');
 const SectionText = require('../views/SectionText');
 
-const refreshTeamMessage = require('./refreshTeamMessage');
-
-const handleCancelRequestToJoin = async (web, payload, Team, PendingTeamRequest) => {
+const handleCancelRequestToJoin = async (web, payload) => {
   const teamRequest = await PendingTeamRequest.findOneAndDelete({ requestingUser: payload.user.id, teamName: payload.view.private_metadata });
 
   console.log('Successfully cancelled request'); // Add winston log

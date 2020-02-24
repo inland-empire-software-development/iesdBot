@@ -1,15 +1,18 @@
-// controllers
+// Database
+const Team = require('../../models/Team');
+
+// Controllers
 const removeTeam = require('./removeTeam');
 const refreshTeamMessage = require('./refreshTeamMessage');
 
-// views
+// Views
 const SectionText = require('../views/SectionText');
 
-const handleDeleteTeam = async (web, payload, db) => {
-  await removeTeam(payload, db)
+const handleDeleteTeam = async (web, payload) => {
+  await removeTeam(payload, Team);
 
   // Reload displayed teams in original message
-  refreshTeamMessage(web, db, payload);
+  refreshTeamMessage(web, Team, payload);
 
   web.views.update({
     view_id: payload.view.id,

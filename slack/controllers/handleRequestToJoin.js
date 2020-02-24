@@ -1,7 +1,10 @@
+// Database
+const Team = require('../../models/Team');
+
 // Views
 const ModalMessage = require('../views/ModalMessage');
 
-const handleRequestToJoin = async (web, payload, Team) => {
+const handleRequestToJoin = async (web, payload) => {
   const userTeam = await Team.findOne({ teamName: payload.actions[0].value });
 
   const modalMessage = `By clicking *Send Request* a message will be sent to

@@ -1,8 +1,12 @@
+// Database
+const Team = require('../../models/Team');
+
+// Views
 const TeamManagerModalReadOnly = require('../views/TeamManagerModalReadOnly');
 
-const handleDisplayTeamManagerReadOnly = async (web, payload, db) => {
+const handleDisplayTeamManagerReadOnly = async (web, payload) => {
 
-  const userTeam = await db.findOne({ teamMembers: payload.user.id });
+  const userTeam = await Team.findOne({ teamMembers: payload.user.id });
 
   const teamMembers = userTeam.teamMembers.map(member => `<@${member}>`)
 

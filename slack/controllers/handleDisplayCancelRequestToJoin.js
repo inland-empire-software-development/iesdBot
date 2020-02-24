@@ -1,7 +1,7 @@
 // Views
 const ModalMessage = require('../views/ModalMessage');
 
-const handleDisplayCancelRequestToJoin = (web, payload, Team) => {
+const handleDisplayCancelRequestToJoin = (web, payload) => {
   const modalMessage = `By clicking *Confirm* your request to join *${payload.actions[0].value}* will be removed.`;
 
   const modal = {

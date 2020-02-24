@@ -1,20 +1,17 @@
-const client = require('../../lib/redis');
+// Database
+const Team = require('../../models/Team');
+const PendingTeamRequest = require('../../models/PendingTeamRequest');
 
+// Controllers
 const refreshTeamMessage = require('../controllers/refreshTeamMessage');
 
+// Views
 const RequestToJoinActions = require('../views/RequestToJoinActions');
 const Divider = require('../views/Divider');
 const SectionText = require('../views/SectionText');
 
-const handleSendRequestToJoin = async (web, payload, Team, PendingTeamRequest) => {
+const handleSendRequestToJoin = async (web, payload) => {
   const userTeam = await Team.findOne({ teamName: payload.view.private_metadata });
-
-  // UERTLGB9C
-
-  // UPDATE MODAL saying request has been sent
-  // Add user to list of pending invites for team
-  // Add an option in team manager to manage pending invites
-  // Will change modal to display pending invites
 
   const message = {
     channel: 'UERTLGB9C', // CHANGE THIS LATER ONCE IT'S READY
