@@ -30,8 +30,8 @@ const teamSchema = new Schema({
   // Date of event that team will be on
   dateOfEvent: {
     type: Date,
-  }
-}, { toObject: { virtuals: true } });
+  },
+}, { toObject: { virtuals: true }, timestamps: { createdAt: 'created_at' } }); // WHY NOT WORKING?
 
 teamSchema.virtual('requestedMembers', {
   ref: 'PendingTeamRequest',

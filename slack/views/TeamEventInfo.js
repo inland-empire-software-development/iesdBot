@@ -1,9 +1,9 @@
-const TeamEventInfo = () => {
+const TeamEventInfo = (eventLink, eventName, eventDate, eventStartTime, eventEndTime, eventLocation, eventRSVPCount) => {
   return {
     type: "section",
     text: {
       type: "mrkdwn",
-      text: "*<https://www.meetup.com/iesd-meetup/events/264486598/| Hack Day September 2019>*\nSaturday, September 28 2:30-7:00pm\nExCite Riverside\n32 members have RSVP\n\n\n *Current teams:*"
+      text: `*<${eventLink}| ${eventName}>*\n${eventDate} \n${eventStartTime} - ${eventEndTime}\n${eventLocation}\n${eventRSVPCount} members have RSVP\n\n\n *Current teams:*`
     },
     accessory: {
       type: "image",

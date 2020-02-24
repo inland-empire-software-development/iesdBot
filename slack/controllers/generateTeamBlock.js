@@ -1,18 +1,11 @@
-const axios = require('axios');
 let Team = require('../views/Team');
+
+// Controllers
+const retrieveHackdayInfo = require('./retrieveHackdayInfo');
 
 const generateTeamBlock = async (db, userId) => {
 
-  let hackDayDate;
-
-  const response = await axios.get('https://api.meetup.com/iesd-meetup/events?&sign=true&photo-host=public');
-  const events = response.data;
-
-  for(const event of events){
-    if(event.name.includes('Hack Day')){
-      hackDayDate = event.local_date;
-    }
-  }
+  const hackDayInfo = await retrieveHackdayInfo();
 
   /**
    * ADD THIS LINE BACK IN ONCE HACK DAY IS BACK
@@ -34,7 +27,7 @@ const generateTeamBlock = async (db, userId) => {
     isOwner = teamOwner === userId;
   }
 
-  const teamBlock = await Team(teams, userTeam[0], isOwner);
+  const teamBlock = await Team(teams, userTeam[0], isOwner, hackDayInfo);
   return teamBlock;
 }
 
