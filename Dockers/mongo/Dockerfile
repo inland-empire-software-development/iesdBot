@@ -2,4 +2,4 @@ FROM mongo:latest
 
 WORKDIR /usr/src/configs
 
-ADD /seed/users.js/ /docker-entrypoint-initdb.d/
+ADD /seed/teams.js/ /docker-entrypoint-initdb.d/

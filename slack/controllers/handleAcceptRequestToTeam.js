@@ -6,16 +6,15 @@ const refreshTeamMessage = require('./refreshTeamMessage');
 const addUserToTeam = require('./addUserToTeam');
 const removeAllPendingRequests = require('./removeAllPendingRequests');
 
-const handleSelectTeam = async (web, payload) => {
-  const userID = payload.user.id;
-  const username = payload.user.username;
-  const teamName = payload.actions[0].value;
+const handleAcceptRequestToTeam = async (web, payload) => {
+  const data = JSON.parse(payload.actions[0].value);
 
-  await addUserToTeam(userID, username, teamName);
+  await addUserToTeam(data.userID, data.username, data.teamName);
 
   refreshTeamMessage(web, Team, payload);
 
-  removeAllPendingRequests(web, userID);
+  removeAllPendingRequests(web, data.userID);
+
 }
 
-module.exports = handleSelectTeam;
+module.exports = handleAcceptRequestToTeam;

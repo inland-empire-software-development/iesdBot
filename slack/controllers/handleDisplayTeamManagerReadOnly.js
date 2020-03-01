@@ -1,12 +1,12 @@
-const client = require('../../lib/redis');
+// Database
+const Team = require('../../models/Team');
 
-const TeamManagerModal = require('../views/TeamManagerModal');
-
+// Views
 const TeamManagerModalReadOnly = require('../views/TeamManagerModalReadOnly');
 
-const displayTeamManagerReadOnly = async (web, payload, db) => {
+const handleDisplayTeamManagerReadOnly = async (web, payload) => {
 
-  const userTeam = await db.findOne({ teamMembers: payload.user.id });
+  const userTeam = await Team.findOne({ teamMembers: payload.user.id });
 
   const teamMembers = userTeam.teamMembers.map(member => `<@${member}>`)
 
@@ -18,4 +18,4 @@ const displayTeamManagerReadOnly = async (web, payload, db) => {
   return web.views.open(modal);
 }
 
-module.exports = displayTeamManagerReadOnly;
+module.exports = handleDisplayTeamManagerReadOnly;

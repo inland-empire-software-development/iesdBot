@@ -2,7 +2,7 @@ const client = require('../../lib/redis');
 
 const generateTeamBlock = require('./generateTeamBlock');
 
-const displayTeam = async (web, db, event) => {
+const handleDisplayTeam = async (web, db, event) => {
 
   const teamBlock = await generateTeamBlock(db, event.user);
   
@@ -30,4 +30,4 @@ const displayTeam = async (web, db, event) => {
   return postMessage;
 }
 
-module.exports = displayTeam;
+module.exports = handleDisplayTeam;

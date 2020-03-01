@@ -1,5 +1,5 @@
 const express = require('express');
-const displayTeam = require('../controllers/displayTeam');
+const handleDisplayTeam = require('../controllers/handleDisplayTeam');
 const Team = require('../../models/Team');
 
 module.exports = (app, web) => {
@@ -10,7 +10,7 @@ module.exports = (app, web) => {
   // Manually created route for handling /hackday slash command
   app.post('/hackday', (req, res) => {
     // Send message to user
-    displayTeam(web, Team, {user: req.body.user_id});
+    handleDisplayTeam(web, Team, {user: req.body.user_id});
   
     // Empty response so no error is displayed
     res.json();
