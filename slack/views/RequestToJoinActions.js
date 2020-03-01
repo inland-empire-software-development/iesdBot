@@ -1,4 +1,12 @@
-const RequestToJoinActions = (teamName) => {
+const RequestToJoinActions = (teamName, userID, username) => {
+  const data = { // TEMPORARY
+    teamName,
+    userID,
+    username
+  }
+
+  const dataJSON = JSON.stringify(data);
+
   return {
     type: "actions",
     elements: [
@@ -9,8 +17,8 @@ const RequestToJoinActions = (teamName) => {
           text: "Accept",
           emoji: true
         },
-        value: teamName,
-        action_id: "team_select"
+        value: dataJSON,
+        action_id: "accept_request_to_join"
       },
       {
         type: "button",
@@ -19,7 +27,7 @@ const RequestToJoinActions = (teamName) => {
           text: "Decline",
           emoji: true
         },
-        value: teamName,
+        value: dataJSON,
         action_id: "decline_request_to_join"
       },
     ]

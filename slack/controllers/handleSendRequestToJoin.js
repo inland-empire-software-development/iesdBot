@@ -14,11 +14,12 @@ const handleSendRequestToJoin = async (web, payload) => {
   const userTeam = await Team.findOne({ teamName: payload.view.private_metadata });
 
   const message = {
-    channel: 'UERTLGB9C', // CHANGE THIS LATER ONCE IT'S READY
+    // channel: 'UERTLGB9C', // CHANGE THIS LATER ONCE IT'S READY
+    channel: userTeam.teamOwner,
     blocks: [
       Divider(),
       SectionText(`*<@${payload.user.id}>* has requested to join *${userTeam.teamName}.*`),
-      RequestToJoinActions(userTeam.teamName),
+      RequestToJoinActions(userTeam.teamName, payload.user.id, payload.user.username), // TEMPORARY
       Divider()
     ],
     as_user: true

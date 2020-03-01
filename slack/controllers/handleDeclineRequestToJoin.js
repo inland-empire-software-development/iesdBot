@@ -7,7 +7,9 @@ const SectionText = require('../views/SectionText');
 const refreshTeamMessage = require('./refreshTeamMessage');
 
 const handleDeclineRequestToJoin = async (web, payload) => {
-  const teamRequest = await PendingTeamRequest.findOneAndDelete({ requestingUser: payload.user.id, teamName: payload.actions[0].value });
+  const data = JSON.parse(payload.actions[0].value);
+
+  const teamRequest = await PendingTeamRequest.findOneAndDelete({ requestingUser: data.userID, teamName: data.teamName});
 
   refreshTeamMessage(web, Team, payload);
 
@@ -18,7 +20,7 @@ const handleDeclineRequestToJoin = async (web, payload) => {
       as_user: true,
       blocks: [
         Divider(),
-        SectionText(`You have declined *<@${payload.user.id}>*'s request to join *${teamRequest.teamName}.*`),
+        SectionText(`You have declined *<@${data.userID}>*'s request to join *${data.teamName}.*`),
         Divider()
       ]
     });
