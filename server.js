@@ -30,7 +30,7 @@ app.use('/actions', slackInteractions.requestListener());
 
 // Register handlers for Slack activities
 require('./slack/listeners/events')(slackEvents, web);
-require('./slack/listeners/interactions')(slackInteractions, web);
+require('./slack/listeners/teamInteractions')(slackInteractions, web);
 require('./slack/listeners/slashCommands')(app, web);
 
 app.get('/', (req, res) => res.send('Server is working'));

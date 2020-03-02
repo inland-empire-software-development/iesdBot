@@ -1,8 +1,8 @@
-const PendingTeamRequest = require('../../models/PendingTeamRequest');
-const Team = require('../../models/Team');
+const PendingTeamRequest = require('../../../models/PendingTeamRequest');
+const Team = require('../../../models/Team');
 
-const Divider = require('../views/Divider');
-const SectionText = require('../views/SectionText');
+const Divider = require('../../views/teamViews/Divider');
+const SectionText = require('../../views/teamViews/SectionText');
 
 const removeAllPendingRequests = async (web, userID) => {
   const allTeamRequests = await PendingTeamRequest.find({ requestingUser: userID });

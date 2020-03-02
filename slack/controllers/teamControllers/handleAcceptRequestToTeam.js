@@ -1,5 +1,5 @@
 // Database
-const Team = require('../../models/Team');
+const Team = require('../../../models/Team');
 
 // controllers
 const refreshTeamMessage = require('./refreshTeamMessage');

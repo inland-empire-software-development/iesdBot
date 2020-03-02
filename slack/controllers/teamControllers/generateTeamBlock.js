@@ -1,4 +1,4 @@
-let Team = require('../views/Team');
+let Team = require('../../views/teamViews/Team');
 
 // Controllers
 const retrieveHackdayInfo = require('./retrieveHackdayInfo');

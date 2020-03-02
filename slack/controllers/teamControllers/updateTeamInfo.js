@@ -1,4 +1,4 @@
-const Team = require('../../models/Team');
+const Team = require('../../../models/Team');
 
 const updateTeamInfo = async (userID, teamName, teamMembers, teamSetting) => {
   const team = await Team.findOne({ teamMembers: userID });

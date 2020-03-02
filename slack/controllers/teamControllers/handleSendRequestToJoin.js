@@ -1,14 +1,14 @@
 // Database
-const Team = require('../../models/Team');
-const PendingTeamRequest = require('../../models/PendingTeamRequest');
+const Team = require('../../../models/Team');
+const PendingTeamRequest = require('../../../models/PendingTeamRequest');
 
 // Controllers
-const refreshTeamMessage = require('../controllers/refreshTeamMessage');
+const refreshTeamMessage = require('./refreshTeamMessage');
 
 // Views
-const RequestToJoinActions = require('../views/RequestToJoinActions');
-const Divider = require('../views/Divider');
-const SectionText = require('../views/SectionText');
+const RequestToJoinActions = require('../../views/teamViews/RequestToJoinActions');
+const Divider = require('../../views/teamViews/Divider');
+const SectionText = require('../../views/teamViews/SectionText');
 
 const handleSendRequestToJoin = async (web, payload) => {
   const userTeam = await Team.findOne({ teamName: payload.view.private_metadata });

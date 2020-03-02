@@ -1,4 +1,4 @@
-const winston = require('../../config/winston');
+const winston = require('../../../config/winston');
 
 const removeTeam = require('./removeTeam');
 

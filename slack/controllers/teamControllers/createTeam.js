@@ -1,5 +1,5 @@
 const axios = require('axios');
-const Team = require('../../models/Team');
+const Team = require('../../../models/Team');
 
 // const createTeam = async (payload, db) => {
 const createTeam = async (teamName, teamMembers, teamSetting, payload) => {

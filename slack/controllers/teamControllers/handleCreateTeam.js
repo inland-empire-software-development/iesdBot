@@ -1,5 +1,5 @@
 // Database
-const Team = require('../../models/Team');
+const Team = require('../../../models/Team');
 
 // Controllers
 const refreshTeamMessage = require('./refreshTeamMessage');
@@ -8,7 +8,7 @@ const extractTeamFromPayloadState = require('./extractTeamFromPayloadState');
 const isTeamInfoUnique = require('./isTeamInfoUnique');
 
 // Views
-const ModalMessage = require('../views/ModalMessage');
+const ModalMessage = require('../../views/teamViews/ModalMessage');
 
 const handleCreateTeam = async (web, payload) => {
   const actionSource = "submit_team";

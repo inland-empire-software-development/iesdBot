@@ -1,7 +1,7 @@
 // Database
-const Team = require('../../models/Team');
+const Team = require('../../../models/Team');
 
-const TeamManagerModal = require('../views/TeamManagerModal');
+const TeamManagerModal = require('../../views/teamViews/TeamManagerModal');
 
 const handleDisplayTeamManager = async (web, payload) => {
 

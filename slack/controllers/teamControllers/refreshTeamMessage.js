@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 // lib
-const client = require('../../lib/redis');
+const client = require('../../../lib/redis');
 
 // controllers
 const generateTeamBlock = require('./generateTeamBlock');

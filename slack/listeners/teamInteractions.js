@@ -1,18 +1,18 @@
-const handleDisplayTeamCreate = require('../controllers/handleDisplayTeamCreate');
-const handleCreateTeam = require('../controllers/handleCreateTeam');
-const handleSelectTeam = require('../controllers/handleSelectTeam');
-const handleRequestToJoin = require('../controllers/handleRequestToJoin');
-const handleCancelRequestToJoin = require('../controllers/handleCancelRequestToJoin');
-const handleAcceptRequestToJoin = require('../controllers/handleAcceptRequestToTeam');
-const handleSendRequestToJoin = require('../controllers/handleSendRequestToJoin');
-const handleDeclineRequestToJoin = require('../controllers/handleDeclineRequestToJoin');
-const handleLeaveTeam = require('../controllers/handleLeaveTeam');
-const handleDisplayTeamManager = require('../controllers/handleDisplayTeamManager');
-const handleDisplayTeamManagerReadOnly = require('../controllers/handleDisplayTeamManagerReadOnly');
-const handleDisplayCancelRequestToJoin = require('../controllers/handleDisplayCancelRequestToJoin');
-const handleEditTeamInfo = require('../controllers/handleEditTeamInfo');
-const handleDeleteTeam = require('../controllers/handleDeleteTeam');
-const handleReturnToTeamModal = require('../controllers/handleReturnToTeamModal');
+const handleDisplayTeamCreate = require('../controllers/teamControllers/handleDisplayTeamCreate');
+const handleCreateTeam = require('../controllers/teamControllers/handleCreateTeam');
+const handleSelectTeam = require('../controllers/teamControllers/handleSelectTeam');
+const handleRequestToJoin = require('../controllers/teamControllers/handleRequestToJoin');
+const handleCancelRequestToJoin = require('../controllers/teamControllers/handleCancelRequestToJoin');
+const handleAcceptRequestToJoin = require('../controllers/teamControllers/handleAcceptRequestToTeam');
+const handleSendRequestToJoin = require('../controllers/teamControllers/handleSendRequestToJoin');
+const handleDeclineRequestToJoin = require('../controllers/teamControllers/handleDeclineRequestToJoin');
+const handleLeaveTeam = require('../controllers/teamControllers/handleLeaveTeam');
+const handleDisplayTeamManager = require('../controllers/teamControllers/handleDisplayTeamManager');
+const handleDisplayTeamManagerReadOnly = require('../controllers/teamControllers/handleDisplayTeamManagerReadOnly');
+const handleDisplayCancelRequestToJoin = require('../controllers/teamControllers/handleDisplayCancelRequestToJoin');
+const handleEditTeamInfo = require('../controllers/teamControllers/handleEditTeamInfo');
+const handleDeleteTeam = require('../controllers/teamControllers/handleDeleteTeam');
+const handleReturnToTeamModal = require('../controllers/teamControllers/handleReturnToTeamModal');
 
 module.exports = (slackInteractions, web) => {
   // Handles adding the current user when they click "choose" to the team

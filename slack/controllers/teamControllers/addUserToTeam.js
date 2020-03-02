@@ -1,6 +1,6 @@
-const winston = require('../../config/winston');
+const winston = require('../../../config/winston');
 
-const Team = require('../../models/Team');
+const Team = require('../../../models/Team');
 
 const addUserToTeam = async (userID, username, teamName) => {
   // Check to see if user is already in team, else go ahead and add them to team

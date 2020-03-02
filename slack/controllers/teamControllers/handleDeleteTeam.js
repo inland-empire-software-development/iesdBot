@@ -1,12 +1,12 @@
 // Database
-const Team = require('../../models/Team');
+const Team = require('../../../models/Team');
 
 // Controllers
 const removeTeam = require('./removeTeam');
 const refreshTeamMessage = require('./refreshTeamMessage');
 
 // Views
-const SectionText = require('../views/SectionText');
+const SectionText = require('../../views/teamViews/SectionText');
 
 const handleDeleteTeam = async (web, payload) => {
   await removeTeam(payload, Team);

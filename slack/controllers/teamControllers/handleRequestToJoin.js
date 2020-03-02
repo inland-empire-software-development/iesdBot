@@ -1,8 +1,8 @@
 // Database
-const Team = require('../../models/Team');
+const Team = require('../../../models/Team');
 
 // Views
-const ModalMessage = require('../views/ModalMessage');
+const ModalMessage = require('../../views/teamViews/ModalMessage');
 
 const handleRequestToJoin = async (web, payload) => {
   const userTeam = await Team.findOne({ teamName: payload.actions[0].value });

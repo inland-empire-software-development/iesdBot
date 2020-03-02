@@ -1,5 +1,5 @@
 const express = require('express');
-const handleDisplayTeam = require('../controllers/handleDisplayTeam');
+const handleDisplayTeam = require('../controllers/teamControllers/handleDisplayTeam');
 const Team = require('../../models/Team');
 
 module.exports = (app, web) => {

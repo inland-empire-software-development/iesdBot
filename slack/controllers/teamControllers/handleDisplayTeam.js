@@ -1,4 +1,4 @@
-const client = require('../../lib/redis');
+const client = require('../../../lib/redis');
 
 const generateTeamBlock = require('./generateTeamBlock');
 

@@ -1,6 +1,6 @@
 // Views
-const TeamCreateModal = require('../views/TeamCreateModal');
-const TeamManagerModal = require('../views/TeamManagerModal');
+const TeamCreateModal = require('../../views/teamViews/TeamCreateModal');
+const TeamManagerModal = require('../../views/teamViews/TeamManagerModal');
 
 const handleReturnToTeamModal = (payload) => {
   const inputData = JSON.parse(payload.view.private_metadata);

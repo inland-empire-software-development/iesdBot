@@ -1,13 +1,13 @@
 // Database
-const Team = require('../../models/Team');
-const PendingTeamRequest = require('../../models/PendingTeamRequest');
+const Team = require('../../../models/Team');
+const PendingTeamRequest = require('../../../models/PendingTeamRequest');
 
 // Controllers
 const refreshTeamMessage = require('./refreshTeamMessage');
 
 // Views
-const Divider = require('../views/Divider');
-const SectionText = require('../views/SectionText');
+const Divider = require('../../views/teamViews/Divider');
+const SectionText = require('../../views/teamViews/SectionText');
 
 const handleCancelRequestToJoin = async (web, payload) => {
   const teamRequest = await PendingTeamRequest.findOneAndDelete({ requestingUser: payload.user.id, teamName: payload.view.private_metadata });

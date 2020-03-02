@@ -1,4 +1,4 @@
-const TeamCreateModal = require('../views/TeamCreateModal');
+const TeamCreateModal = require('../../views/teamViews/TeamCreateModal');
 
 const handleDisplayTeamCreate = (web, payload) => {
   const modal = {

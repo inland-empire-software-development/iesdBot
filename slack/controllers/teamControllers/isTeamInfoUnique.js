@@ -1,4 +1,4 @@
-const Team = require('../../models/Team');
+const Team = require('../../../models/Team');
 
 const isTeamInfoUnique = async (teamName, teamMembers) => {
   let isTeamNameUnique = true;
