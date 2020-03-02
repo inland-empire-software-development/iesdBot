@@ -1,5 +1,5 @@
 const RequestToJoinActions = (teamName, userID, username) => {
-  const data = { // TEMPORARY
+  const data = {
     teamName,
     userID,
     username

@@ -13,13 +13,16 @@ const SectionText = require('../views/SectionText');
 const handleSendRequestToJoin = async (web, payload) => {
   const userTeam = await Team.findOne({ teamName: payload.view.private_metadata });
 
+  const { teamName, teamOwner } = userTeam;
+  const requestingUserID = payload.user.id;
+  const requestingUsername = payload.user.username;
+
   const message = {
-    // channel: 'UERTLGB9C', // CHANGE THIS LATER ONCE IT'S READY
-    channel: userTeam.teamOwner,
+    channel: teamOwner,
     blocks: [
       Divider(),
-      SectionText(`*<@${payload.user.id}>* has requested to join *${userTeam.teamName}.*`),
-      RequestToJoinActions(userTeam.teamName, payload.user.id, payload.user.username), // TEMPORARY
+      SectionText(`*<@${requestingUserID}>* has requested to join *${teamName}.*`),
+      RequestToJoinActions(teamName, requestingUserID, requestingUsername),
       Divider()
     ],
     as_user: true
@@ -28,8 +31,8 @@ const handleSendRequestToJoin = async (web, payload) => {
   const requestMessage = await web.chat.postMessage(message);
 
   PendingTeamRequest.create({
-    teamName: userTeam.teamName,
-    requestingUser: payload.user.id,
+    teamName: teamName,
+    requestingUser: requestingUserID,
     requestTimestamp: requestMessage.ts,
     messageChannel: requestMessage.channel
   });
